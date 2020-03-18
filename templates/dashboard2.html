@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myDIV");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+
+  </script>
   <body>
 
 
   <nav>
     <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
+    <label for="check" onclick="myFunction()" class="checkbtn">
       <i class="fas fa-bars"></i>
     </label>
   <label class="logo">My GST</label>
@@ -45,7 +56,7 @@
 
   </div> -->
 
-  <div class="container">
+  <div class="container" id="myDIV">
   <h1 style="color:white;">Hello Siddharth!</h1>
   <div class="row">
     <div class="col-md-8 col-sm-8" style="background-color:rgba(0,0,0,0.8);">
