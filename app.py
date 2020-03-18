@@ -47,17 +47,16 @@ def index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    form=loginform()
-
-    if form.validate_on_submit():
-        user= User.query.filter_by(username=form.username.data).first()
+    if request.method == 'POST':
+        user= User.query.filter_by(username=request.form['username']).first()
         if user:
-            if check_password_hash(user.password,form.password.data):
-                login_user(user, remember=form.remember.data)
-                return redirect(url_for('dashboard'))
+            if check_password_hash(user.password,request.form['password']):
+                login_user(user)
 
-        return '<h1>Invalid Pass</h1>'
-    return render_template('login.html',form=form)
+                return redirect(url_for('dashboard'))
+            return '<h1>Invalid Pass</h1>'
+        return render_template('signup.html')
+    return render_template('login.html')
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
