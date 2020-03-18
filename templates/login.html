@@ -11,15 +11,11 @@
     <div class="sign-up-form">
       <img src="{{url_for('.static', filename='user-icon.png')}}" alt="xyz">
       <h1>Log in</h1>
-      <form >
-        <input type="text" class="input-box" placeholder="Username">
-
-        <input type="password" class="input-box" placeholder="Password">
-
-        <p><span><input type="checkbox" name="" value=""></span>Remember me</p>
-        <button type="button" name="button" class="sign-btn">Login</button>
-
-
+      <form action="{{ url_for('login') }}" method="POST">
+        <input type="text" class="input-box" name="username" placeholder="Username">
+        <input type="password" class="input-box" name="password" placeholder="Password">
+        <p><span><input type="checkbox" name="remember" value=""></span>Remember me</p>
+        <button type="submit" name="button" class="sign-btn">Login</button>
       </form>
 
     </div>
