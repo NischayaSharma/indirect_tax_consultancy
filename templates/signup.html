@@ -12,7 +12,7 @@
     <div class="sign-up-form">
       <img src="{{url_for('.static', filename='user-icon.png')}}" alt="xyz">
       <h1>Sign Up Now</h1>
-      <form >
+      <form action="{{ url_for('signup') }}" method="post" >
         <input type="text" class="input-box" name="username" placeholder="Username">
 
         <input type="email" class="input-box" name="email" placeholder="Your Email">
