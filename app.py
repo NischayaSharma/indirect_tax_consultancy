@@ -25,7 +25,6 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
-    about_me = db.Column(db.String(250))
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -41,6 +40,7 @@ class registerform(FlaskForm):
     email=StringField('Email', validators=[InputRequired(),Email(message='invalid email')])
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+    confirm_password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
 
 class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -71,7 +71,7 @@ def signup():
     form=registerform()
     if form.validate_on_submit():
         hashed_password=generate_password_hash(form.password.data,method='sha256')
-        new_user=User(username=form.username.data,email=form.email.data,password=hashed_password,about_me="")
+        new_user=User(username=form.username.data,email=form.email.data,password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
