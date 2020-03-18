@@ -21,7 +21,7 @@ login_manager.init_app(app)
 login_manager.login_view='login'
 
 class User(UserMixin,db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
@@ -70,7 +70,7 @@ def signup():
     form=registerform()
     if form.validate_on_submit():
         hashed_password=generate_password_hash(request.form['password'],method='sha256')
-        new_user=User(username=request.form['username'],email=request.form['email'],password=hashed_password,time_table="",counter=0)
+        new_user=User(username=request.form['username'],email=request.form['email'],password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
