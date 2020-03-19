@@ -21,10 +21,22 @@ login_manager.init_app(app)
 login_manager.login_view='login'
 
 class User(UserMixin,db.Model):
+    __tablename__="user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
+
+    doubt = db.relationship('Doubts', backref='user')
+
+class Doubts(db.Model):
+    __tablename__="doubts"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    userid = db.Column(db.Integer, db.ForeignKey("user.id"))
+    query = db.Column(db.Text)
+    reply = db.Column(db.Text)
+    asked_timestamp = db.Column(db.String(10))
+    reply_timestamp = db.Column(db.String(10))
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -40,6 +52,7 @@ class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
     submit = SubmitField('Submit')
+
 
 @app.route('/')
 def index():
@@ -69,12 +82,13 @@ def signup():
         return redirect(url_for('login'))
     return render_template('signup.html')
 
-
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    user = User.query.filter_by(username=current_user.username).first()
-    return render_template('dashboard.html',user=user)
+    # queries = Doubts.query.filter_by(user=current_user)
+    print(current_user)
+    return "<h1>Hello</h1>"
+    # return render_template('dashboard.html', queries=queries)
 
 @app.route('/logout')
 @login_required
