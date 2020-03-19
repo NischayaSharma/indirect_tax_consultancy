@@ -21,7 +21,6 @@ login_manager.init_app(app)
 login_manager.login_view='login'
 
 class User(UserMixin,db.Model):
-    __tablename__="user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
@@ -30,7 +29,6 @@ class User(UserMixin,db.Model):
     doubt = db.relationship('Doubts', backref='user')
 
 class Doubts(db.Model):
-    __tablename__="doubts"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
     query = db.Column(db.Text)
@@ -85,10 +83,7 @@ def signup():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    # queries = Doubts.query.filter_by(user=current_user)
-    print(current_user)
-    return "<h1>Hello</h1>"
-    # return render_template('dashboard.html', queries=queries)
+    return render_template('dashboard2.html',user=current_user,queries=current_user.doubt)
 
 @app.route('/logout')
 @login_required
