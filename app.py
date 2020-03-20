@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask,render_template,redirect,url_for, request
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
@@ -31,10 +32,12 @@ class User(UserMixin,db.Model):
 class Doubts(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
+    title = db.Column(db.Text)
     query = db.Column(db.Text)
     reply = db.Column(db.Text)
-    asked_timestamp = db.Column(db.String(10))
-    reply_timestamp = db.Column(db.String(10))
+    upload = db.Column(db.Text)
+    asked_timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    reply_timestamp = db.Column(db.DateTime)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -91,19 +94,18 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/edit_profile', methods=['GET', 'POST'])
+@app.route('/askquestion', methods=['GET', 'POST'])
 @login_required
-def edit_profile():
-    form = EditProfileForm()
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.about_me = form.about_me.data
+def askquestion():
+    if request.method == 'POST':
+        tle = request.form['qry_title']
+        qry = request.form['content']
+        new_doubt = Doubts(user=current_user, title=tle, query=qry, upload="", asked_timestamp=datetime.utcnow())
+        db.session.add(new_doubt)
         db.session.commit()
-        return redirect(url_for('edit_profile'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
+        return redirect(url_for('dashboard'))
+
+    return render_template('askquestion.html')
 
 
 if __name__ == "__main__":
