@@ -29,8 +29,13 @@
       <br>
 
 
-      <section> 
-      <main action="{{ url_for('askquestion') }}" method="POST">
+      <section>
+      <form action="{{ url_for('askquestion') }}" method="POST">
+        <main>
+
+
+
+
         <div class="title">
           <h3>Title</h3>
           <input type="text" name="qry_title" class="titlebox">
@@ -46,13 +51,15 @@
           <input type="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
         <br>
-        <div class="submitbutton">
-          <button type="submit" name="button" class="sign-btn">Ask a Question</button>
+        <div class="submitbutton" >
+          <button type="submit" class="sign-btn">Ask a Question</button>
           <!-- <a class="btn btn-primary" type="submit" role="button">Ask a Question</a> -->
         </div>
-      </main>
+          </main>
+          </form>
+
       </section>
-      
+
 
       <script>
         CKEDITOR.replace("content");
