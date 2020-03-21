@@ -63,18 +63,19 @@
     <div class="col-md-8 col-sm-8" style="background-color:rgba(0,0,0,0.8);">
       <h4 style="color:white;">Latest Questions </h4>
       {%if queries|length<=5%}
-      {%for qry in queries%}
-      <p>{{qry.id}}: {{qry.query}}</p>
-      {%endfor%}
+        {%for qry in queries%}
+          <p>{{qry.userqrynum}}: {{qry.title}}</p>
+        {%endfor%}
       {%endif%}
+
       {%set count=0%}
       {%if queries|length>5%}
-      {%for qry in queries%}
-      {%set count=count+1%}
-      {%if count<=5%}
-      <p>{{qry.id}}: {{qry.query}}</p>
-      {%endif%}
-      {%endfor%}
+        {%for qry in queries%}
+          {%set count=count+1%}
+          {%if count<=5%}
+            <p>{{qry.userqrynum}}: {{qry.title}}</p>
+          {%endif%}
+        {%endfor%}
       {%endif%}
     </div>
     <div class="col-md-4 col-sm-4" style="background-color:;">
