@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <link rel="stylesheet" href="myquestions.css">
+
+  </head>
+  <body>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" onclick="myFunction()" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+    <label class="logo">My GST</label>
+    <ul>
+      <li><a  href="{{url_for('dashboard')}}">Dashboard</a></li>
+      <li><a href="#" class="active">MyQuestions</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Acts</a></li>
+      <li><a href="{{url_for('logout')}}">Logout</a></li>
+    </ul>
+    </nav>
+
+    <br>
+    <br>
+
+
+    <section>
+    <!-- <form action="{{ url_for('askquestion') }}" method="POST"> -->
+    <form>
+
+
+      <main>
+
+
+
+
+        <a href="#modal" class="modal-open">Open Modal</a>
+
+   <div class="modal" id="modal">
+      <div class="modal__content">
+        <a href="#" class="modal__close">&times;</a>
+        <h2 class="modal__heading">Title</h2>
+        <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus inventore suscipit mollitia, odit aliquam laudantium praesentium porro hic asperiores expedita obcaecati earum ullam, nisi laborum accusamus, id placeat tenetur?
+        Consequatur, neque. Explicabo, reiciendis quia distinctio eius facere pariatur expedita, amet hic alias illum harum inventore, ullam tempore quos. Quod, repellat ratione culpa qui harum blanditiis atque voluptatem iste id..</p>
+        <br>
+        <br>
+        <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus inventore suscipit mollitia, odit aliquam laudantium praesentium porro hic asperiores expedita obcaecati earum ullam, nisi laborum accusamus, id placeat tenetur?
+        Consequatur, neque. Explicabo, reiciendis quia distinctio eius facere pariatur expedita, amet hic alias illum harum inventore, ullam tempore quos. Quod, repellat ratione culpa qui harum blanditiis atque voluptatem iste id..</p>
+      </div>
+   </div>
+
+
+      <br>
+
+        </main>
+        </form>
+
+    </section>
+
+
+  </body>
+</html>
