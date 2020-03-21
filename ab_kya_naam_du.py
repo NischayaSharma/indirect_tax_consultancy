@@ -14,7 +14,7 @@ def seequery(value):
     getit = cur.fetchall()
     child=Toplevel()
     child.geometry("400x400")
-    mylabel=Label(child,text=getit).pack()
+    mylabel=Label(child,text=getit[0][0]).pack()
     ans=Entry(child)
     ans.pack()
     mybtn=Button(child,text="Submit",command=lambda:mysubmit(ans.get(),value))
