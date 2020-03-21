@@ -8,11 +8,17 @@
 
 body{
   font font-family: montserrat;
+
   background: url(images.jpg)  no-repeat;
+
   background-size: cover;
-  height: calc(100vh - 80px);
+  height: 100vh;
 }
 
+
+section {
+  background-color: red;
+}
 nav{
   background: #0082e6;
   height: 80px;
@@ -82,7 +88,11 @@ a.active,a:hover
 
   }
 
+
+
 }
+
+
 
 @media (max-width: 858px) {
   .checkbtn
@@ -114,4 +124,5 @@ a.active,a:hover
   #check:checked ~ ul{
     left:0;
   }
+
 }
