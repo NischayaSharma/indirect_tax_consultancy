@@ -20,6 +20,14 @@ nav{
 
 }
 
+.newsbox{
+  font font-family: montserrat;
+  background-color: #69a5d3;
+  height:35px;
+  border:2px #014b85;
+  float:top;
+}
+
 label.logo
 {
   color: white;
