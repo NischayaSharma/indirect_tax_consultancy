@@ -140,7 +140,19 @@ section{
   height:80%;
   overflow:scroll;
 }
+.btn_div{
+  padding-left: 1%;
+  padding-top: 0.3%;
+  width: 100px;
+  height: 30px;
+  background-color: dodgerblue;
+  border-radius: 10px;
+  position: relative;
+}
+.a_as_btn{
 
+
+}
 
 a:link,
  a:visited{
