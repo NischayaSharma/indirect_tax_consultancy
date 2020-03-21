@@ -32,6 +32,7 @@ class User(UserMixin,db.Model):
 class Doubts(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
+    userqrynum = db.Column(db.Integer)
     title = db.Column(db.Text)
     query = db.Column(db.Text)
     reply = db.Column(db.Text)
@@ -100,7 +101,8 @@ def askquestion():
     if request.method == 'POST':
         tle = request.form['qry_title']
         qry = request.form['content']
-        new_doubt = Doubts(user=current_user, title=tle, query=qry, upload="", asked_timestamp=datetime.utcnow())
+        usrqry = len(current_user.doubt)+1
+        new_doubt = Doubts(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow())
         db.session.add(new_doubt)
         db.session.commit()
         return redirect(url_for('dashboard'))
