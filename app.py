@@ -115,5 +115,11 @@ def askquestion():
 def myquestions():
     return render_template('myquestions.html',queries=current_user.doubt)
 
+@app.route('/postmethod', methods = ['GET','POST'])
+def get_javascript_data():
+    jsdata = request.form['javascript_data']
+    print (jsdata)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

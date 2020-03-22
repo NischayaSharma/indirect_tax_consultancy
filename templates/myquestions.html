@@ -6,7 +6,7 @@
 
   <title></title>
   <link rel="stylesheet" href="{{url_for('.static', filename='myquestions.css')}}">
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 
 <body>
@@ -41,8 +41,9 @@
 
         {%set count=0%}
         {%for qry in queries%}
-        {%set count=count+1}
-          <a href="#modal" class={{count}}>{{qry.userqrynum}}: {{qry.title}}</a><br>
+
+          <a href="#modal" class={{loop.index}}>{{qry.userqrynum}}: {{qry.title}}</a><br>
+
         {%endfor%}
 
 
@@ -83,7 +84,19 @@
 
   </section>
 
+  <script >
+  $('a').click(function() {
+  var theClass = this.className;
+  var data={"ans":theClass};
+  $.post( "/postmethod", {
 
+    javascript_data: data
+});
+  alert( javascript_data );
+});
+</script>
+
+    </body>
 
 </body>
 
