@@ -110,5 +110,10 @@ def askquestion():
     return render_template('askquestion.html')
 
 
+@app.route('/myquestions')
+@login_required
+def myquestions():
+    return render_template('myquestions.html',queries=current_user.doubt)
+
 if __name__ == "__main__":
     app.run(debug=True)
