@@ -39,9 +39,10 @@
       <main>
 
 
-
+        {%set count=0%}
         {%for qry in queries%}
-          <a href="#modal" class="modal-open">{{qry.userqrynum}}: {{qry.title}}</a><br>
+        {%set count=count+1}
+          <a href="#modal" class={{count}}>{{qry.userqrynum}}: {{qry.title}}</a><br>
         {%endfor%}
 
 
