@@ -46,11 +46,11 @@
         <div class="modal" id="modal">
           <div class="modal__content">
             <a href="#" class="modal__close">&times;</a>
-            <h2 class="modal__heading">{{title}}</h2>
-            <p class="modal__paragraph">{{query}}</p>
+            <h2 id="qry_title" class="modal__heading"></h2>
+            <p id="qry" class="modal__paragraph"></p>
             <br>
             <br>
-            <p class="modal__paragraph">{{reply}}</p>
+            <p id="qry_reply" class="modal__paragraph"></p>
             <br>
             <br>
             <div class="btn_div" onclick="btnClicked()">
@@ -79,6 +79,7 @@
 
 
     function doWork(event, className) {
+      var qry;
       // Using fetch api to call backend endpoint
       fetch('/postmethod', {
         method: 'POST',
@@ -90,7 +91,13 @@
         // uncomment line under this if response is in json format
         .then(response => response.json())
         // .then(response => response.text())
-        .then(data => console.log(data));
+        .then(data => {
+          console.log(data);
+          document.getElementById("qry_title").innerHTML=data.title;
+          document.getElementById("qry").innerHTML=data.query;
+          document.getElementById("qry_reply").innerHTML=data.reply;
+        });
+
       // event.preventDefault();
     }
 

@@ -114,10 +114,7 @@ def askquestion():
 @app.route('/myquestions')
 @login_required
 def myquestions():
-    global ttle
-    global qry
-    global reply
-    return render_template('myquestions.html',queries=current_user.doubt, title=ttle, query=qry, reply=reply)
+    return render_template('myquestions.html',queries=current_user.doubt)
 
 @app.route('/postmethod', methods = ['POST'])
 def get_javascript_data():
