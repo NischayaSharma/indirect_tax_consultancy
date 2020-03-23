@@ -53,8 +53,8 @@
             <p class="modal__paragraph">{{reply}}</p>
             <br>
             <br>
-            <div class="btn_div">
-              <a href="{{url_for('askquestion')}}" class="a_as_btn">Ask further Question</a>
+            <div class="btn_div" onclick="btnClicked()">
+              <a class="a_as_btn">Ask further Question</a>
             </div>
           </div>
         </div>
@@ -71,10 +71,13 @@
 
 
   <script>
+
     $('a').click(function () {
       var theClass = this.className;
       doWork(event, theClass)
     });
+
+
     function doWork(event, className) {
       // Using fetch api to call backend endpoint
       fetch('/postmethod', {
@@ -89,6 +92,11 @@
         // .then(response => response.text())
         .then(data => console.log(data));
       // event.preventDefault();
+    }
+
+
+    function btnClicked() {
+      window.location.href = "{{url_for('askquestion')}}";
     }
   </script>
 
