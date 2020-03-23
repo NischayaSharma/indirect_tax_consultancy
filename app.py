@@ -21,7 +21,7 @@ migrate = Migrate(app, db)
 login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='login'
-
+ttle = qry = reply = ""
 class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
@@ -114,13 +114,22 @@ def askquestion():
 @app.route('/myquestions')
 @login_required
 def myquestions():
-    return render_template('myquestions.html',queries=current_user.doubt)
+    global ttle
+    global qry
+    global reply
+    return render_template('myquestions.html',queries=current_user.doubt, title=ttle, query=qry, reply=reply)
 
 @app.route('/postmethod', methods = ['POST'])
 def get_javascript_data():
     try:
         jsdata = request.get_json()
         print (current_user.doubt[int(jsdata)-1])
+        global ttle
+        global qry
+        global reply
+        ttle = current_user.doubt[int(jsdata)-1].title
+        qry = current_user.doubt[int(jsdata)-1].query
+        reply = current_user.doubt[int(jsdata)-1].reply
         return jsonify({"title":current_user.doubt[int(jsdata)-1].title, "query":current_user.doubt[int(jsdata)-1].query, "reply":current_user.doubt[int(jsdata)-1].reply})
     except ValueError:
         return jsonify('OK')
