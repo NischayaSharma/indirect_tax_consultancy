@@ -58,7 +58,7 @@ class EditProfileForm(FlaskForm):
 
 @app.route('/')
 def index():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -123,14 +123,18 @@ def output():
 @app.route('/receiver', methods = ['POST'])
 def worker():
 	# read json + reply
-	data = request.get_json()
-	result = ''
-
-	for item in data:
-		# loop over every row
-		result += str(item['make']) + '\n'
-
-	return result
+    # data=''
+    # data=json.dumps(data)
+    data = request.get_json('data')
+    print(str(data))
+    return render_template('index.html')
+	# result = ''
+    #
+	# for item in data:
+	# 	# loop over every row
+	# 	result += str(item['make']) + '\n'
+    #
+	# return result
 
 
 
