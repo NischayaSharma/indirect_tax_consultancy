@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask,render_template,redirect,url_for, request
+from flask import Flask,render_template,redirect,url_for, request, json
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
 from flask_wtf import FlaskForm
@@ -8,7 +8,8 @@ from wtforms.validators import InputRequired,Email,Length, DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import LoginManager,UserMixin,login_user,login_required,logout_user,current_user
-import random,json
+from flask.json import jsonify
+
 
 app=Flask(__name__)
 app.config['SECRET_KEY']="lolly"
@@ -20,7 +21,7 @@ migrate = Migrate(app, db)
 login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='login'
-
+ttle = qry = reply = ""
 class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
@@ -113,28 +114,25 @@ def askquestion():
 @app.route('/myquestions')
 @login_required
 def myquestions():
-    return render_template('myquestions.html',queries=current_user.doubt)
+    global ttle
+    global qry
+    global reply
+    return render_template('myquestions.html',queries=current_user.doubt, title=ttle, query=qry, reply=reply)
 
-@app.route('/')
-def output():
-	# serve index template
-	return render_template('index.html', name='Joe')
-
-@app.route('/receiver', methods = ['POST'])
-def worker():
-	# read json + reply
-	data = request.get_json()
-	result = ''
-
-	for item in data:
-		# loop over every row
-		result += str(item['make']) + '\n'
-
-	return result
-
-
-
-
+@app.route('/postmethod', methods = ['POST'])
+def get_javascript_data():
+    try:
+        jsdata = request.get_json()
+        print (current_user.doubt[int(jsdata)-1])
+        global ttle
+        global qry
+        global reply
+        ttle = current_user.doubt[int(jsdata)-1].title
+        qry = current_user.doubt[int(jsdata)-1].query
+        reply = current_user.doubt[int(jsdata)-1].reply
+        return jsonify({"title":current_user.doubt[int(jsdata)-1].title, "query":current_user.doubt[int(jsdata)-1].query, "reply":current_user.doubt[int(jsdata)-1].reply})
+    except ValueError:
+        return jsonify('OK')
 
 if __name__ == "__main__":
     app.run(debug=True)
