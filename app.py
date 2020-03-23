@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask,render_template,redirect,url_for, request
+from flask import Flask,render_template,redirect,url_for, request, json
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
 from flask_wtf import FlaskForm
@@ -8,6 +8,7 @@ from wtforms.validators import InputRequired,Email,Length, DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import LoginManager,UserMixin,login_user,login_required,logout_user,current_user
+from flask.json import jsonify
 
 
 app=Flask(__name__)
@@ -115,11 +116,14 @@ def askquestion():
 def myquestions():
     return render_template('myquestions.html',queries=current_user.doubt)
 
-@app.route('/postmethod', methods = ['GET','POST'])
+@app.route('/postmethod', methods = ['POST'])
 def get_javascript_data():
-    jsdata = request.form['javascript_data']
-    print (jsdata)
-
+    try:
+        jsdata = request.get_json()
+        print (current_user.doubt[int(jsdata)-1])
+        return jsonify({"title":current_user.doubt[int(jsdata)-1].title, "query":current_user.doubt[int(jsdata)-1].query, "reply":current_user.doubt[int(jsdata)-1].reply})
+    except ValueError:
+        return jsonify('OK')
 
 if __name__ == "__main__":
     app.run(debug=True)

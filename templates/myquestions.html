@@ -6,7 +6,7 @@
 
   <title></title>
   <link rel="stylesheet" href="{{url_for('.static', filename='myquestions.css')}}">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 
 <body>
@@ -38,65 +38,76 @@
 
       <main>
 
-
-        {%set count=0%}
         {%for qry in queries%}
-
-          <a href="#modal" class={{loop.index}}>{{qry.userqrynum}}: {{qry.title}}</a><br>
-
+        <a href="#modal" class={{loop.index}}>{{qry.userqrynum}}: {{qry.title}}</a><br>
         {%endfor%}
 
 
-          <div class="modal" id="modal">
-            <div class="modal__content">
-              <a href="#" class="modal__close">&times;</a>
-              <h2 class="modal__heading">Title</h2>
-              <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus
-                inventore suscipit mollitia, odit aliquam laudantium praesentium porro hic asperiores expedita obcaecati
-                earum ullam, nisi laborum accusamus, id placeat tenetur?
-                Consequatur, neque. Explicabo, reiciendis quia distinctio eius facere pariatur expedita, amet hic alias
-                illum harum inventore, ullam tempore quos. Quod, repellat ratione culpa qui harum blanditiis atque
-                voluptatem iste id..</p>
-              <br>
-              <br>
-              <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus
-                inventore suscipit mollitia, odit aliquam laudantium praesentium porro hic asperiores expedita obcaecati
-                earum ullam, nisi laborum accusamus, id placeat tenetur?
-                Consequatur, neque. Explicabo, reiciendis quia distinctio eius facere pariatur expedita, amet hic alias
-                illum harum inventore, ullam tempore quos. Quod, repellat ratione culpa qui harum blanditiis atque
-                voluptatem iste id..</p>
-              <br>
-              <br>
+        <div class="modal" id="modal">
+          <div class="modal__content">
+            <a href="#" class="modal__close">&times;</a>
+            <h2 class="modal__heading">Title</h2>
+            <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus
+              inventore suscipit mollitia, odit aliquam laudantium praesentium porro hic asperiores expedita obcaecati
+              earum ullam, nisi laborum accusamus, id placeat tenetur?
+              Consequatur, neque. Explicabo, reiciendis quia distinctio eius facere pariatur expedita, amet hic alias
+              illum harum inventore, ullam tempore quos. Quod, repellat ratione culpa qui harum blanditiis atque
+              voluptatem iste id..</p>
+            <br>
+            <br>
+            <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus
+              inventore suscipit mollitia, odit aliquam laudantium praesentium porro hic asperiores expedita obcaecati
+              earum ullam, nisi laborum accusamus, id placeat tenetur?
+              Consequatur, neque. Explicabo, reiciendis quia distinctio eius facere pariatur expedita, amet hic alias
+              illum harum inventore, ullam tempore quos. Quod, repellat ratione culpa qui harum blanditiis atque
+              voluptatem iste id..</p>
+            <br>
+            <br>
 
-              <div class="btn_div">
+            <div class="btn_div">
 
 
-                <a href="{{url_for('askquestion')}}" class="a_as_btn">Ask further Question</a>
-              </div>
+              <a href="{{url_for('askquestion')}}" class="a_as_btn">Ask further Question</a>
             </div>
           </div>
+        </div>
 
 
-          <br>
+        <br>
 
       </main>
     </form>
 
   </section>
 
-  <script >
-  $('a').click(function() {
-  var theClass = this.className;
-  var data={"ans":theClass};
-  $.post( "/postmethod", {
 
-    javascript_data: data
-});
-  alert( javascript_data );
-});
-</script>
 
-    </body>
+
+  <script>
+    $('a').click(function () {
+      var theClass = this.className;
+      doWork(event, theClass)
+    });
+    function doWork(event, className) {
+      // Using fetch api to call backend endpoint
+      fetch('/postmethod', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(className)
+      })
+        // uncomment line under this if response is in json format
+        .then(response => response.json())
+        // .then(response => response.text())
+        .then(data => console.log(data));
+      // event.preventDefault();
+    }
+  </script>
+
+
+
+</body>
 
 </body>
 
