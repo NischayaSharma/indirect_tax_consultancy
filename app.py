@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from flask import Flask,render_template,redirect,url_for, request, json
 from flask_bootstrap import Bootstrap
@@ -6,6 +7,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,BooleanField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired,Email,Length, DataRequired
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug import secure_filename
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import LoginManager,UserMixin,login_user,login_required,logout_user,current_user
 from flask.json import jsonify
@@ -102,6 +104,11 @@ def askquestion():
     if request.method == 'POST':
         tle = request.form['qry_title']
         qry = request.form['content']
+        print(request.files)
+        if 'uploaded_file' in request.files:
+            f = request.files['uploaded_file']
+            if f.filename != '':
+                f.save(os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename)))
         usrqry = len(current_user.doubt)+1
         new_doubt = Doubts(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow())
         db.session.add(new_doubt)
@@ -114,23 +121,16 @@ def askquestion():
 @app.route('/myquestions')
 @login_required
 def myquestions():
-    global ttle
-    global qry
-    global reply
-    return render_template('myquestions.html',queries=current_user.doubt, title=ttle, query=qry, reply=reply)
+    return render_template('myquestions.html',queries=current_user.doubt)
 
 @app.route('/postmethod', methods = ['POST'])
 def get_javascript_data():
     try:
         jsdata = request.get_json()
-        print (current_user.doubt[int(jsdata)-1])
-        global ttle
-        global qry
-        global reply
-        ttle = current_user.doubt[int(jsdata)-1].title
-        qry = current_user.doubt[int(jsdata)-1].query
-        reply = current_user.doubt[int(jsdata)-1].reply
-        return jsonify({"title":current_user.doubt[int(jsdata)-1].title, "query":current_user.doubt[int(jsdata)-1].query, "reply":current_user.doubt[int(jsdata)-1].reply})
+        title = current_user.doubt[int(jsdata)-1].title
+        query = current_user.doubt[int(jsdata)-1].query
+        reply = current_user.doubt[int(jsdata)-1].reply if current_user.doubt[int(jsdata)-1].reply != None else "Not replied yet."
+        return jsonify({"title":title, "query":query, "reply":reply})
     except ValueError:
         return jsonify('OK')
 
