@@ -12,7 +12,20 @@
 
 <div class="wrapper">
 
-
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+  <label class="logo">My GST</label>
+  <ul>
+    <li><a  href="#">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('signup') }}" class="active">Signup</a></li>
+  </ul>
+  </nav>
     <div class="sign-up-form">
       <img src="{{url_for('.static', filename='user-icon.png')}}" alt="xyz">
       <h1>Sign Up Now</h1>
