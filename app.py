@@ -25,6 +25,7 @@ login_manager.init_app(app)
 login_manager.login_view='login'
 ttle = qry = reply = ""
 class User(UserMixin,db.Model):
+    __tablename__="user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
@@ -33,6 +34,7 @@ class User(UserMixin,db.Model):
     doubt = db.relationship('Doubts', backref='user')
 
 class Doubts(db.Model):
+    __tablename__="doubts"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
     userqrynum = db.Column(db.Integer)
@@ -43,20 +45,25 @@ class Doubts(db.Model):
     asked_timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     reply_timestamp = db.Column(db.DateTime)
 
+    subqueries = db.relationship('SubQueries', backref='doubt')
+
+class SubQueries(db.Model):
+    __tablename__="subqueries"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    userid = db.Column(db.Integer, db.ForeignKey("user.id"))
+    qryid = db.Column(db.Integer, db.ForeignKey("doubts.id"))
+    userqrynum = db.Column(db.Integer)
+    title = db.Column(db.Text)
+    query = db.Column(db.Text)
+    reply = db.Column(db.Text)
+    upload = db.Column(db.Text)
+    asked_timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    reply_timestamp = db.Column(db.DateTime)
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
-
-class loginform(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
-    remember = BooleanField('remember me')
-
-class EditProfileForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
-    submit = SubmitField('Submit')
 
 
 @app.route('/')
