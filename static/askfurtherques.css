@@ -1,17 +1,11 @@
-
-
-body{
-  margin: 0;
+*{
   padding: 0;
-  font-family: sans-serif;
-
-
-
-
-
-
-
+  margin: 0;
+  text-decoration: none!important;
+  list-style: none;
+  box-sizing: border-box;
 }
+
 
 .wrapper{
   background-image:url('gst.jpeg');
@@ -24,10 +18,12 @@ body{
 }
 
 
-
-/*Navigation bar HERE*/
-
-
+body{
+  font font-family: montserrat;
+  background: url(images.jpg)  no-repeat;
+  background-size: cover;
+  height: calc(100vh - 80px);
+}
 
 nav{
   background: #0082e6;
@@ -43,14 +39,12 @@ label.logo
   line-height: 80px;
   padding: 0 100px;
   font-weight: bold;
-  text-decoration: none;
 }
 
 nav ul
 {
   float: right;
   margin-right: 20px;
-
 
 }
 nav ul li a{
@@ -66,7 +60,6 @@ nav ul li{
   display: inline;
   line-height: 80px;
   margin: 0 5px;
-
 
 }
 
@@ -101,11 +94,7 @@ a.active,a:hover
 
   }
 
-
-
 }
-
-
 
 @media (max-width: 858px) {
   .checkbtn
@@ -137,74 +126,22 @@ a.active,a:hover
   #check:checked ~ ul{
     left:0;
   }
+}
+
+main
+{ padding-top: 5%;
+  padding-left: 2%;
+  padding-bottom: 5%;
+  padding-right: 2%;
+  width: 50%;
+  background-color: rgba(0,0,0,0.7)
 
 }
 
-/*Signup Form HERE*/
-
-.sign-up-form
-{
-  width: 400px;
-  box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
-  background: #fff;
-  padding: 20px;
-  margin: 8% auto 0;
-  text-align: center;
+h3{
+  color: white;
 }
 
-.sign-up-form h1
-{
-  color: #1c8adb;
-  margin-bottom: 30px;
-}
-
-.input-box
-{
-  border-radius: 20px;
-  padding: 10px;
-  margin: 10px 0;
-  width: 100%
-  border: 1px solid #999;
-  outline: none;
-}
-
-button
-{
-  color: #fff;
-  width: 100%;
-  padding: 10px;
-  border-radius: 20px;
-  font-size: 15px;
-  margin: 10px 0;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.sign-btn
-{
-  background-color: #1c8abd
-}
-
-a
-{
-  text-decoration: none;
-}
-
-hr
-{
-  margin-top: 50px;
-  width: 80%;
-}
-.or
-{
-  background: #fff;
-  width: 30px;
-  margin: -30px auto 10px;
-}
-
-img
-{
-  width: 70px;
-  margin-top: -50px;
+section{
+  padding-left: 30%;
 }
