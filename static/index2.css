@@ -9,8 +9,7 @@
 body{
   font font-family: montserrat;
 
-  background: url(gst.jpg)  no-repeat;
-
+  background: url('gst.jpeg')  no-repeat;
   background-size: cover;
   height: 100vh;
 }

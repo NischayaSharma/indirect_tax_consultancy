@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import LoginManager,UserMixin,login_user,login_required,logout_user,current_user
 from flask.json import jsonify
+from sqlalchemy_serializer import SerializerMixin
 
 
 app=Flask(__name__)
@@ -24,17 +25,20 @@ login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='login'
 ttle = qry = reply = ""
-class User(UserMixin,db.Model):
+class User(UserMixin,db.Model,SerializerMixin):
     __tablename__="user"
+    serialize_rules = ('-doubt.user','-subqueries.user',) 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
 
     doubt = db.relationship('Doubts', backref='user')
+    subqueries = db.relationship('SubQueries', backref='user')
 
-class Doubts(db.Model):
+class Doubts(db.Model,SerializerMixin):
     __tablename__="doubts"
+    serialize_rules = ('-subqueries.doubt',) 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
     userqrynum = db.Column(db.Integer)
@@ -47,7 +51,7 @@ class Doubts(db.Model):
 
     subqueries = db.relationship('SubQueries', backref='doubt')
 
-class SubQueries(db.Model):
+class SubQueries(db.Model,SerializerMixin):
     __tablename__="subqueries"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
@@ -134,10 +138,9 @@ def myquestions():
 def get_javascript_data():
     try:
         jsdata = request.get_json()
-        title = current_user.doubt[int(jsdata)-1].title
-        query = current_user.doubt[int(jsdata)-1].query
-        reply = current_user.doubt[int(jsdata)-1].reply if current_user.doubt[int(jsdata)-1].reply != None else "Not replied yet."
-        return jsonify({"title":title, "query":query, "reply":reply})
+        jsonStr = current_user.doubt[int(jsdata)-1].to_dict()
+        # print(jsonStr)
+        return jsonify(jsonStr)
     except ValueError:
         return jsonify('OK')
 
