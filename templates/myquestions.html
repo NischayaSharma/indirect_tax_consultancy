@@ -46,6 +46,9 @@
 
 
         <div class="modal" id="modal">
+
+
+
           <div class="modal__content">
             <a href="#" class="modal__close">&times;</a>
             <h2 id="qry_title" class="modal__heading"></h2>
@@ -61,7 +64,6 @@
           </div>
         </div>
 
-
         <br>
 
       </main>
@@ -72,6 +74,9 @@
 </div>
 
   <script>
+
+  CKEDITOR.replace("content");
+  CKEDITOR.config.autoParagraph = false;
 
     $('a').click(function () {
       var theClass = this.className;

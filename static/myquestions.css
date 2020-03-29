@@ -154,6 +154,7 @@ section{
   width:80%;
   height:80%;
   overflow:scroll;
+  overflow-x: hidden;
 }
 
 
@@ -237,3 +238,6 @@ display: inline-block;
 color: dodgerblue;
 margin: 2em;
 } */
+div{
+  cursor: pointer;
+}
