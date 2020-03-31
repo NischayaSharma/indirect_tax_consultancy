@@ -12,81 +12,70 @@
 <body>
   <div class="wrapper">
 
-  <nav>
-    <input type="checkbox" id="check">
-    <label for="check" onclick="myFunction()" class="checkbtn">
-      <i class="fas fa-bars"></i>
-    </label>
-    <label class="logo">My GST</label>
-    <ul>
-      <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
-      <li><a href="{{url_for('myquestions')}}" class="active">MyQuestions</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Acts</a></li>
-      <li><a href="{{url_for('logout')}}">Logout</a></li>
-    </ul>
-  </nav>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" onclick="myFunction()" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">My GST</label>
+      <ul>
+        <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+        <li><a href="{{url_for('myquestions')}}" class="active">MyQuestions</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Acts</a></li>
+        <li><a href="{{url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
 
-  <br>
-  <br>
-
-
-
-
-  <section>
-    <!-- <form action="{{ url_for('askquestion') }}" method="POST"> -->
-    <form>
-
-
-      <main>
-
-        {%for qry in queries%}
-        <a href="#modal" class={{loop.index}}>{{qry.userqrynum}}: {{qry.title}}</a><br>
-        {%endfor%}
-
-
-        <div class="modal" id="modal">
+    <br>
+    <br>
 
 
 
-          <div class="modal__content">
-            <a href="#" class="modal__close">&times;</a>
-            <h2 id="qry_title" class="modal__heading"></h2>
-            <p id="qry" class="modal__paragraph"></p>
-            <br>
-            <br>
-            <p id="qry_reply" class="modal__paragraph"></p>
-            <br>
-            <br>
-            <div class="btn_div" onclick="btnClicked()">
-              <a class="a_as_btn">Ask further Question</a>
+
+    <section>
+      <!-- <form action="{{ url_for('askquestion') }}" method="POST"> -->
+      <form>
+
+
+        <main>
+
+          {%for qry in queries%}
+          <a href="#modal" onclick="clickIt('{{loop.index}}')">{{qry.userqrynum}}: {{qry.title}}</a><br>
+          {%endfor%}
+
+
+          <div class="modal" id="modal">
+            <div class="modal__content">
+              <a href="#" class="modal__close" onclick="closeIt()">&times;</a>
+              <div id="query" ></div>
             </div>
           </div>
-        </div>
 
-        <br>
+          <br>
 
-      </main>
-    </form>
+        </main>
+      </form>
 
-  </section>
+    </section>
 
-</div>
+  </div>
 
   <script>
 
-  CKEDITOR.replace("content");
-  CKEDITOR.config.autoParagraph = false;
+    // CKEDITOR.replace("content");
+    // CKEDITOR.config.autoParagraph = false;
 
-    $('a').click(function () {
-      var theClass = this.className;
+    function clickIt(theClass) {
+      // var theClass = this.className;
       doWork(event, theClass)
-    });
+    };
 
 
     function doWork(event, className) {
       var qry;
       // Using fetch api to call backend endpoint
+      // console.log(className)
       fetch('/postmethod', {
         method: 'POST',
         headers: {
@@ -99,17 +88,44 @@
         // .then(response => response.text())
         .then(data => {
           console.log(data);
-          document.getElementById("qry_title").innerHTML=data.title;
-          document.getElementById("qry").innerHTML=data.query;
-          document.getElementById("qry_reply").innerHTML=data.reply;
+          
+          var heading = document.createElement("H2")
+          heading.setAttribute('class','modal__heading')
+          heading.innerText = data.title
+          document.getElementById("query").appendChild(heading)
+          
+          var qry = document.createElement("P")
+          qry.setAttribute('class','modal_paragraph')
+          qry.innerText = data.query
+          document.getElementById("query").appendChild(qry)
+          
+          document.getElementById("query").appendChild(document.createElement("BR"))
+          document.getElementById("query").appendChild(document.createElement("BR"))
+          
+          var qry_reply = document.createElement("P")
+          qry_reply.setAttribute('class','modal_paragraph')
+          qry_reply.innerText = data.reply
+          document.getElementById("query").appendChild(qry_reply)
+          
+          document.getElementById("query").appendChild(document.createElement("BR"))
+          document.getElementById("query").appendChild(document.createElement("BR"))
+          
+          var btn = document.createElement('div')
+          var para = document.createElement('p')
+          btn.setAttribute('class','btn_div')
+          btn.setAttribute('id','hello')
+          para.innerText = "Ask Further Question"
+          document.getElementById("query").appendChild(btn)
+          btn.appendChild(para)
+          btn.onclick= function() {
+            window.location.href = "{{url_for('askfurtherquestion')}}";
+          }
         });
-
       // event.preventDefault();
     }
 
-
-    function btnClicked() {
-      window.location.href = "{{url_for('askquestion')}}";
+    function closeIt() {
+      document.getElementById("query").innerHTML = ""
     }
   </script>
 

@@ -139,10 +139,29 @@ def get_javascript_data():
     try:
         jsdata = request.get_json()
         jsonStr = current_user.doubt[int(jsdata)-1].to_dict()
-        # print(jsonStr)
+        print(jsonStr)
         return jsonify(jsonStr)
     except ValueError:
         return jsonify('OK')
+
+@app.route('/askfurtherquestion')
+@login_required
+def askfurtherquestion():
+    if request.method == 'POST':
+        tle = request.form['qry_title']
+        qry = request.form['content']
+        print(request.files)
+        if 'uploaded_file' in request.files:
+            f = request.files['uploaded_file']
+            if f.filename != '':
+                f.save(os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename)))
+        usrqry = len(current_user.doubt)+1
+        new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow(), doubt=current_user.doubt)
+        db.session.add(new_doubt)
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    return render_template('askfurtherques.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
