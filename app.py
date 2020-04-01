@@ -27,7 +27,7 @@ login_manager.login_view='login'
 jsdata = ""
 class User(UserMixin,db.Model,SerializerMixin):
     __tablename__="user"
-    serialize_rules = ('-doubt.user','-subqueries.user','-subqueries.doubt',) 
+    serialize_rules = ('-doubt.user','-subqueries.user','-doubt.subqueries.user','-subqueries.doubt') 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
@@ -149,6 +149,7 @@ def get_javascript_data():
 @login_required
 def askfurtherquestion():
     global jsdata
+    print(jsdata)
     if request.method == 'POST':
         tle = request.form['qry_title']
         qry = request.form['content']
@@ -162,7 +163,7 @@ def askfurtherquestion():
         db.session.add(new_doubt)
         db.session.commit()
         return redirect(url_for('dashboard'))
-    return render_template('askfurtherques.html')
+    return render_template('askfurtherquestion.html')
 
 
 if __name__ == "__main__":

@@ -66,6 +66,8 @@
     // CKEDITOR.replace("content");
     // CKEDITOR.config.autoParagraph = false;
 
+    var replied = false
+
     function clickIt(theClass) {
       // var theClass = this.className;
       doWork(event, theClass)
@@ -89,7 +91,6 @@
         .then(data => {
           console.log(data);
 
-          var replied = false
           var heading = document.createElement("H2")
           heading.setAttribute('class', 'modal__heading')
           heading.innerText = data.title
