@@ -98,7 +98,7 @@
 
           var qry = document.createElement("P")
           qry.setAttribute('class', 'modal_paragraph')
-          qry.innerText = data.query
+          qry.innerText = "Q: "+data.query
           document.getElementById("query").appendChild(qry)
 
           document.getElementById("query").appendChild(document.createElement("BR"))
@@ -110,7 +110,7 @@
             qry_reply.innerText = "Not replied yet"
             replied = false
           } else {
-            qry_reply.innerText = data.reply
+            qry_reply.innerText = "A: "+data.reply
             replied = true
           }
           document.getElementById("query").appendChild(qry_reply)
@@ -140,7 +140,7 @@
     function myFunc(value, index, array) {
       var qry = document.createElement("P")
       qry.setAttribute('class', 'modal_paragraph')
-      qry.innerText = value.query
+      qry.innerText = "Q: "+value.query
       document.getElementById("query").appendChild(qry)
 
       document.getElementById("query").appendChild(document.createElement("BR"))
@@ -152,7 +152,7 @@
         qry_reply.innerText = "Not replied yet"
         replied = false
       } else {
-        qry_reply.innerText = value.reply
+        qry_reply.innerText = "A: "+value.reply
         replied = true
       }
       document.getElementById("query").appendChild(qry_reply)
