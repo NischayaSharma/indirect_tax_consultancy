@@ -10,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import LoginManager,UserMixin,login_user,login_required,logout_user,current_user
+from flask_mail import Mail, Message
 from flask.json import jsonify
 from sqlalchemy_serializer import SerializerMixin
 
@@ -18,16 +19,23 @@ app=Flask(__name__)
 app.config['SECRET_KEY']="lolly"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'troubleshooter.xyz@gmail.com'
+app.config['MAIL_PASSWORD'] = 'pass1911'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 Bootstrap(app)
 db=SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='login'
-ttle = qry = reply = ""
+jsdata = ""
 class User(UserMixin,db.Model,SerializerMixin):
     __tablename__="user"
-    serialize_rules = ('-doubt.user','-subqueries.user',) 
+    serialize_rules = ('-doubt.user','-subqueries.user','-doubt.subqueries.user','-subqueries.doubt') 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
@@ -57,8 +65,8 @@ class SubQueries(db.Model,SerializerMixin):
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
     qryid = db.Column(db.Integer, db.ForeignKey("doubts.id"))
     userqrynum = db.Column(db.Integer)
-    title = db.Column(db.Text)
     query = db.Column(db.Text)
+    title = db.Column(db.Text)
     reply = db.Column(db.Text)
     upload = db.Column(db.Text)
     asked_timestamp = db.Column(db.DateTime, default=datetime.utcnow)
@@ -72,6 +80,9 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
+    # msg = Message('Hello', sender=app.config.get("MAIL_USERNAME"), recipients = ["nischaya1703@gmail.com"])
+    # msg.body = "This is the email body"
+    # mail.send(msg)
     return render_template('index2.html')
 
 @app.route('/login', methods=['GET','POST'])
@@ -137,6 +148,7 @@ def myquestions():
 @app.route('/postmethod', methods = ['POST'])
 def get_javascript_data():
     try:
+        global jsdata
         jsdata = request.get_json()
         jsonStr = current_user.doubt[int(jsdata)-1].to_dict()
         print(jsonStr)
@@ -144,9 +156,11 @@ def get_javascript_data():
     except ValueError:
         return jsonify('OK')
 
-@app.route('/askfurtherquestion')
+@app.route('/askfurtherquestion', methods=['GET','POST'])
 @login_required
 def askfurtherquestion():
+    global jsdata
+    print(jsdata)
     if request.method == 'POST':
         tle = request.form['qry_title']
         qry = request.form['content']
@@ -156,11 +170,11 @@ def askfurtherquestion():
             if f.filename != '':
                 f.save(os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename)))
         usrqry = len(current_user.doubt)+1
-        new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow(), doubt=current_user.doubt)
+        new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow(), doubt=current_user.doubt[int(jsdata)-1])
         db.session.add(new_doubt)
         db.session.commit()
         return redirect(url_for('dashboard'))
-    return render_template('askfurtherques.html')
+    return render_template('askfurtherquestion.html')
 
 
 if __name__ == "__main__":
