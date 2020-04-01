@@ -24,10 +24,10 @@ migrate = Migrate(app, db)
 login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='login'
-ttle = qry = reply = ""
+jsdata = ""
 class User(UserMixin,db.Model,SerializerMixin):
     __tablename__="user"
-    serialize_rules = ('-doubt.user','-subqueries.user',) 
+    serialize_rules = ('-doubt.user','-subqueries.user','-subqueries.doubt',) 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
@@ -137,6 +137,7 @@ def myquestions():
 @app.route('/postmethod', methods = ['POST'])
 def get_javascript_data():
     try:
+        global jsdata
         jsdata = request.get_json()
         jsonStr = current_user.doubt[int(jsdata)-1].to_dict()
         print(jsonStr)
@@ -144,9 +145,10 @@ def get_javascript_data():
     except ValueError:
         return jsonify('OK')
 
-@app.route('/askfurtherquestion')
+@app.route('/askfurtherquestion', methods=['GET','POST'])
 @login_required
 def askfurtherquestion():
+    global jsdata
     if request.method == 'POST':
         tle = request.form['qry_title']
         qry = request.form['content']
@@ -156,7 +158,7 @@ def askfurtherquestion():
             if f.filename != '':
                 f.save(os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename)))
         usrqry = len(current_user.doubt)+1
-        new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow(), doubt=current_user.doubt)
+        new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow(), doubt=current_user.doubt[int(jsdata)-1])
         db.session.add(new_doubt)
         db.session.commit()
         return redirect(url_for('dashboard'))
