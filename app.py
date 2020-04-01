@@ -10,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import LoginManager,UserMixin,login_user,login_required,logout_user,current_user
+from flask_mail import Mail, Message
 from flask.json import jsonify
 from sqlalchemy_serializer import SerializerMixin
 
@@ -18,6 +19,13 @@ app=Flask(__name__)
 app.config['SECRET_KEY']="lolly"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'troubleshooter.xyz@gmail.com'
+app.config['MAIL_PASSWORD'] = 'pass1911'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 Bootstrap(app)
 db=SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -57,8 +65,8 @@ class SubQueries(db.Model,SerializerMixin):
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
     qryid = db.Column(db.Integer, db.ForeignKey("doubts.id"))
     userqrynum = db.Column(db.Integer)
-    title = db.Column(db.Text)
     query = db.Column(db.Text)
+    title = db.Column(db.Text)
     reply = db.Column(db.Text)
     upload = db.Column(db.Text)
     asked_timestamp = db.Column(db.DateTime, default=datetime.utcnow)
@@ -72,6 +80,9 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
+    # msg = Message('Hello', sender=app.config.get("MAIL_USERNAME"), recipients = ["nischaya1703@gmail.com"])
+    # msg.body = "This is the email body"
+    # mail.send(msg)
     return render_template('index2.html')
 
 @app.route('/login', methods=['GET','POST'])
