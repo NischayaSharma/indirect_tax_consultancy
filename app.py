@@ -13,6 +13,7 @@ from flask_login import LoginManager,UserMixin,login_user,login_required,logout_
 from flask_mail import Mail, Message
 from flask.json import jsonify
 from sqlalchemy_serializer import SerializerMixin
+import smtplib
 
 
 app=Flask(__name__)
@@ -35,7 +36,7 @@ login_manager.login_view='login'
 jsdata = ""
 class User(UserMixin,db.Model,SerializerMixin):
     __tablename__="user"
-    serialize_rules = ('-doubt.user','-subqueries.user','-doubt.subqueries.user','-subqueries.doubt') 
+    serialize_rules = ('-doubt.user','-subqueries.user','-doubt.subqueries.user','-subqueries.doubt')
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
@@ -46,7 +47,7 @@ class User(UserMixin,db.Model,SerializerMixin):
 
 class Doubts(db.Model,SerializerMixin):
     __tablename__="doubts"
-    serialize_rules = ('-subqueries.doubt',) 
+    serialize_rules = ('-subqueries.doubt',)
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.Integer, db.ForeignKey("user.id"))
     userqrynum = db.Column(db.Integer)
@@ -124,6 +125,7 @@ def logout():
 @login_required
 def askquestion():
     if request.method == 'POST':
+        send_mail()
         tle = request.form['qry_title']
         qry = request.form['content']
         print(request.files)
@@ -162,6 +164,7 @@ def askfurtherquestion():
     global jsdata
     print(jsdata)
     if request.method == 'POST':
+        send_mail()
         tle = request.form['qry_title']
         qry = request.form['content']
         print(request.files)
@@ -175,6 +178,20 @@ def askfurtherquestion():
         db.session.commit()
         return redirect(url_for('dashboard'))
     return render_template('askfurtherquestion.html')
+
+
+def send_mail():
+    server=smtplib.SMTP('smtp.gmail.com',587)
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
+    server.login('sidmehta0201@gmail.com','qehkgdqfrtkyjote')
+    subject='New Query!!!'
+    body="A new query has been initiated by fuck database"
+    msg=f"Subject:{subject}\n\n{body}"
+    server.sendmail('sidmehta0201@gmail.com','sidmehta0201@gmail.com',msg)
+    print("Hey Email has been Sent!!!!")
+    server.quit()
 
 
 if __name__ == "__main__":
