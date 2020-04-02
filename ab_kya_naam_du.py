@@ -14,14 +14,14 @@ def send_mail():
     cur.execute("SELECT email FROM user WHERE id="+str(us_id[0][0]))
     recipient_email = cur.fetchall()
 
-    server.login('sidmehta0201@gmail.com','qehkgdqfrtkyjote')
+    server.login('tax.troubleshooterr@gmail.com','dbcsomrfzzhzdciw')
 
     subject='Query Answered!!!'
     body="Your query regarding the gst doubt has been answered please check the following"
 
     msg=f"Subject:{subject}\n\n{body}"
 
-    server.sendmail('sidmehta0201@gmail.com',recipient_email,msg)
+    server.sendmail('tax.troubleshooterr@gmail.com',recipient_email,msg)
 
     print("Hey Email has been Sent!!!!")
 

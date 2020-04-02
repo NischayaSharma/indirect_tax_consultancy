@@ -185,11 +185,11 @@ def send_mail():
     server.ehlo()
     server.starttls()
     server.ehlo()
-    server.login('sidmehta0201@gmail.com','qehkgdqfrtkyjote')
+    server.login('tax.troubleshooterr@gmail.com','dbcsomrfzzhzdciw')
     subject='New Query!!!'
     body="A new query has been initiated by fuck database"
     msg=f"Subject:{subject}\n\n{body}"
-    server.sendmail('sidmehta0201@gmail.com','sidmehta0201@gmail.com',msg)
+    server.sendmail('tax.troubleshooterr@gmail.com','sidmehta0201@gmail.com',msg)
     print("Hey Email has been Sent!!!!")
     server.quit()
 
