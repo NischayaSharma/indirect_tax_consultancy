@@ -125,7 +125,6 @@ def logout():
 @login_required
 def askquestion():
     if request.method == 'POST':
-        send_mail()
         tle = request.form['qry_title']
         qry = request.form['content']
         print(request.files)
@@ -137,6 +136,9 @@ def askquestion():
         new_doubt = Doubts(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow())
         db.session.add(new_doubt)
         db.session.commit()
+        subject = str(current_user.id)+"."+str(usrqry)+": "+str(tle)
+        body = str(qry)+"\n\nBy "+str(current_user.username)+"."
+        send_mail(subject,body)
         return redirect(url_for('dashboard'))
 
     return render_template('askquestion.html')
@@ -164,7 +166,6 @@ def askfurtherquestion():
     global jsdata
     print(jsdata)
     if request.method == 'POST':
-        send_mail()
         tle = request.form['qry_title']
         qry = request.form['content']
         print(request.files)
@@ -172,25 +173,25 @@ def askfurtherquestion():
             f = request.files['uploaded_file']
             if f.filename != '':
                 f.save(os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename)))
-        usrqry = len(current_user.doubt)+1
+        usrqry = len(current_user.doubt[int(jsdata)-1].subqueries)+1
         new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow(), doubt=current_user.doubt[int(jsdata)-1])
         db.session.add(new_doubt)
         db.session.commit()
+        subject = str(current_user.id)+"."+str(current_user.doubt[int(jsdata)-1].userqrynum)+""+str(usrqry)+": "+str(tle)
+        body = str(qry)+"\n\nBy "+str(current_user.username)+"."
+        send_mail(subject,body)
         return redirect(url_for('dashboard'))
     return render_template('askfurtherquestion.html')
 
 
-def send_mail():
+def send_mail(subject, body):
     server=smtplib.SMTP('smtp.gmail.com',587)
     server.ehlo()
     server.starttls()
     server.ehlo()
     server.login('tax.troubleshooterr@gmail.com','dbcsomrfzzhzdciw')
-    subject='New Query!!!'
-    body="A new query has been initiated by fuck database"
     msg=f"Subject:{subject}\n\n{body}"
-    server.sendmail('tax.troubleshooterr@gmail.com','sidmehta0201@gmail.com',msg)
-    print("Hey Email has been Sent!!!!")
+    server.sendmail('tax.troubleshooterr@gmail.com','troubleshooter.xyz@gmail.com',msg)
     server.quit()
 
 
