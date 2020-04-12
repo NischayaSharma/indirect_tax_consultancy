@@ -3,6 +3,7 @@ import sqlite3
 import smtplib
 from PIL import ImageTk,Image
 from tkinter import messagebox
+from datetime import datetime
 
 def start():
     root.withdraw()
@@ -78,7 +79,9 @@ def seequery(value):
 
 
 def mysubmit(value,id):
-    cur.execute("UPDATE doubts SET reply=\"" + value + "\" where id=" + str(id) + ";")
+    cmd = f"UPDATE doubts SET reply= \"{value}\", reply_timestamp=\"{datetime.utcnow()}\" where id={id};"
+    print(cmd)
+    cur.execute(cmd)
     conn.commit()
     send_mail()
 
