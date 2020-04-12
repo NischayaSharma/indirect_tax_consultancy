@@ -27,7 +27,7 @@ def send_mail():
     server.ehlo()
     server.starttls()
     server.ehlo()
-    cur.execute("SELECT email FROM user WHERE id="+str(us_id[0][0]))
+    cur.execute("SELECT email FROM user WHERE id="+str(us_id))
     recipient_email = cur.fetchall()
 
     server.login('tax.troubleshooterr@gmail.com','dbcsomrfzzhzdciw')
@@ -54,13 +54,13 @@ def seequery(value):
     global child2
     global us_id
     cur = conn.cursor()
-    cur.execute("SELECT query FROM doubts WHERE id="+str(value))
+    cur.execute("SELECT query,title,userid FROM doubts WHERE id="+str(value))
     getit = cur.fetchall()
-    cur.execute("SELECT query FROM doubts WHERE id="+str(value))
-    getit = cur.fetchall()
-    cur.execute("SELECT userid FROM doubts WHERE id="+str(value))
-    us_id = cur.fetchall()
-    print(us_id)
+    # cur.execute("SELECT query,title,userid FROM subqueries WHERE qryid="+str(value))
+    # subq=cur.fetchall()
+    # print(subq)
+    us_id=getit[0][2]
+    print(getit[0][2])
     child2=Toplevel()
     child2.geometry("960x600")
     myimg = ImageTk.PhotoImage(Image.open("home2.png"))
@@ -92,11 +92,13 @@ def mymain():
     myimg = ImageTk.PhotoImage(Image.open("home2.png"))
     mylabel = Label(child1, image=myimg)
     mylabel.place(x=0,y=0)
-    cur.execute("SELECT id, query FROM doubts WHERE reply is NULL")
+    cur.execute("SELECT id, title FROM doubts WHERE reply is NULL")
     users=cur.fetchall()
+    # cur.execute("SELECT id, title FROM subqueries WHERE reply is NULL")
+    # subq=cur.fetchall()
+    # print(subq)
     var=IntVar(child1,0)
     linespace_y=50
-
     if len(users) == 0:
         no_ques = Label(child1, text="No more questions remaining")
         no_ques.place(x=100, y=80)
