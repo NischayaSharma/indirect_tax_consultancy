@@ -132,7 +132,9 @@ def askquestion():
         if 'uploaded_file' in request.files:
             f = request.files['uploaded_file']
             if f.filename != '':
-                path=os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename))
+                if not os.path.exists(os.path.join(os.path.dirname(__file__),"uploads",str(current_user.username)+"."+tle)):
+                    os.makedirs(os.path.join(os.path.dirname(__file__),"uploads",str(current_user.username)+"."+tle))
+                path=os.path.join(os.path.dirname(__file__),"uploads",str(current_user.username)+"."+tle,secure_filename(f.filename))
                 f.save(path)
         usrqry = len(current_user.doubt)+1
         new_doubt = Doubts(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload=path, asked_timestamp=datetime.utcnow())
@@ -175,7 +177,9 @@ def askfurtherquestion():
         if 'uploaded_file' in request.files:
             f = request.files['uploaded_file']
             if f.filename != '':
-                path=os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename))
+                if not os.path.exists(os.path.join(os.path.dirname(__file__),"uploads",str(current_user.username)+"."+tle)):
+                    os.makedirs(os.path.join(os.path.dirname(__file__),"uploads",str(current_user.username)+"."+tle))
+                path=os.path.join(os.path.dirname(__file__),"uploads",str(current_user.username)+"."+tle,secure_filename(f.filename))
                 f.save(path)
         usrqry = len(current_user.doubt[int(jsdata)-1].subqueries)+1
         new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload=path, asked_timestamp=datetime.utcnow(), doubt=current_user.doubt[int(jsdata)-1])
