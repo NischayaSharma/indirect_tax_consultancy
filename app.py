@@ -128,12 +128,14 @@ def askquestion():
         tle = request.form['qry_title']
         qry = request.form['content']
         print(request.files)
+        path = ""
         if 'uploaded_file' in request.files:
             f = request.files['uploaded_file']
             if f.filename != '':
-                f.save(os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename)))
+                path=os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename))
+                f.save(path)
         usrqry = len(current_user.doubt)+1
-        new_doubt = Doubts(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow())
+        new_doubt = Doubts(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload=path, asked_timestamp=datetime.utcnow())
         db.session.add(new_doubt)
         db.session.commit()
         subject = str(current_user.id)+"."+str(usrqry)+": "+str(tle)
@@ -169,12 +171,14 @@ def askfurtherquestion():
         tle = request.form['qry_title']
         qry = request.form['content']
         print(request.files)
+        path=""
         if 'uploaded_file' in request.files:
             f = request.files['uploaded_file']
             if f.filename != '':
-                f.save(os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename)))
+                path=os.path.join(os.path.dirname(__file__),"uploads",secure_filename(f.filename))
+                f.save(path)
         usrqry = len(current_user.doubt[int(jsdata)-1].subqueries)+1
-        new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload="", asked_timestamp=datetime.utcnow(), doubt=current_user.doubt[int(jsdata)-1])
+        new_doubt = SubQueries(user=current_user, title=tle, query=qry, userqrynum=usrqry, upload=path, asked_timestamp=datetime.utcnow(), doubt=current_user.doubt[int(jsdata)-1])
         db.session.add(new_doubt)
         db.session.commit()
         subject = str(current_user.id)+"."+str(current_user.doubt[int(jsdata)-1].userqrynum)+""+str(usrqry)+": "+str(tle)
