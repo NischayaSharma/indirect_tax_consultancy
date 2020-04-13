@@ -1,2 +1,4 @@
-# login_signup_page_with_database_and-Bootstrap
-A  small Login SignUp page using python flask,sqlite2 and Bootstrap
+INDIRECT TAX CONSULTANTCY
+A Website where user can ask queries related to GST using flask
+
+pip install requirements.txt before running

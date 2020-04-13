@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="PHOTO_OCR_N043,N049" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
