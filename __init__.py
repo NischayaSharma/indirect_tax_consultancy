@@ -198,7 +198,7 @@ def send_mail(subject, body):
     server.starttls()
     server.ehlo()
     server.login('tax.troubleshooterr@gmail.com','dbcsomrfzzhzdciw')
-    msg=f"Subject:{subject}\n\n{body}"
+    msg="Subject:"+subject+"\n\n"+body
     server.sendmail('tax.troubleshooterr@gmail.com','troubleshooter.xyz@gmail.com',msg)
     server.quit()
 
