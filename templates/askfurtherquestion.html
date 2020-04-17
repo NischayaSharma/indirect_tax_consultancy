@@ -19,7 +19,9 @@
         <label for="check" onclick="myFunction()" class="checkbtn">
           <i class="fas fa-bars"></i>
         </label>
-      <label class="logo">My GST</label>
+        <a class="navbar-brand" href="#">
+            <img id="brand-image" src="{{url_for('.static', filename='Layer 2.png')}}" alt="xyz" height="70" style="padding-left: 10px;padding-top:5px;">
+        </a>
       <ul>
         <li><a  href="{{url_for('dashboard')}}">Dashboard</a></li>
         <li><a href="{{url_for('myquestions')}}">MyQuestions</a></li>
