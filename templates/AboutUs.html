@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <!-- <link rel="stylesheet" href="{{url_for('.static', filename='dashboard2.css')}}"> -->
+  <link rel="stylesheet" href="AboutUs.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<body>
+
+<div class="wrapper">
+
+
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" onclick="myFunction()" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <a class="navbar-brand" href="#">
+        <img id="brand-image" src="{{url_for('.static', filename='Layer 2.png')}}" alt="xyz" height="60">
+    </a>
+    <ul>
+      <li><a  href="{{url_for('dashboard')}}">Dashboard</a></li>
+      <li><a href="{{url_for('myquestions')}}">MyQuestions</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Acts</a></li>
+      <li><a class="active" href="#">About-Us</a></li>
+      <li><a href="{{url_for('logout')}}">Logout</a></li>
+
+    </ul>
+  </nav>
+
+
+  <div class="container" id="myDIV">
+    <h1 style="color: rgb(0, 0, 0);">AboutUs</h1>
+    <div class="row">
+      <div class="col-md-8 col-sm-8" style="background-color:rgba(0,0,0,0.8);">
+        <!-- <h4 style="color:white;">Latest Questions </h4> -->
+
+
+        <h3><span style="font-weight: 400; color: #ffffff;">Indirect Tax Troubleshooting</span></h3>
+        <p><span style="font-weight: 400; color: #ffffff;">Organization</span></p>
+        <h2><span style="color: #ffffff;"><strong>To Troubleshoot the queries relating to Indirect taxes in India</strong></span></h2>
+        <p><span style="color: #ffffff;"><span style="font-weight: 400;">This platform is an endeavor to bring all stakeholders to seek one stop solution to their concerns relating to the field of indirect taxation in India. As we all know that India is in the transition phase leading to a new India under the flagship schemes of Make in India, One Nation One tax. This new India cannot become the one envisioned unless the field of Indirect taxation contributes significantly to the Government exchequer. It is in this context our country </span><span style="font-weight: 400;">has</span><span style="font-weight: 400;"> recently adopted Goods and Service Tax (GST) w.e.f 01.07.2017 and various stakeholders such as small kirana stores, service providers, MSMEs, Data entry operators who are filing the returns for taxpayers, freelance consultants, advocates, large tax payers, chartered accountants, company secretaries, their subordinate staff undertaking day to day data entry/return filing/compliance related work, department officials implementing the taxation provisions, auditors, regulators etc. are slowly and steadily adapting to the new taxation system.&nbsp;</span></span></p>
+        <p><span style="font-weight: 400; color: #ffffff;">Since, this new taxation system is bring out a paradigm shift in the indirect taxation arena with not only the way its provisions are legislated, implemented and getting administered by the Department officials but also altering the way the compliance level of the indirect taxation is to be undertaken&nbsp; by the taxpayers through digital and online platforms with minimal physical interactions. In India, the service sectors were first time taxed through Finance Act, 1994 in the year 1994 and till 30th of June-2017, the same got evolved on day to day basis and before it could earn a self- nomenclature for itself, got abolished and merged with GST. Hence, GST being hardly 2 to 3 years old has to evolve a lot with new innovative ways the various stakeholders are encountering unique issues which are yet to be explored and resolved whether it is relating to the statutory provisions related, procedural formalities, technical glitches in the front end and back end systems etc.&nbsp;</span></p>
+        <p><span style="font-weight: 400; color: #ffffff;">It is in this context, providing this platform to trouble shoot the queries of the stakeholders, to their utmost satisfaction is being launched and this too based on the response would evolve accordingly. The best part of this endeavor is that it is absolutely free of cost and is just an attempt to take the concept of ease of doing business in India to new heights and bring about a paradigm shift in the compliance level of indirect taxes in India.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+        <p><span style="font-weight: 400; color: #ffffff;">Amidst troubles lies the Opportunity&ndash;&nbsp;</span></p>
+        <p><span style="font-weight: 400; color: #ffffff;">Indirect Tax Troubleshooting-ITT</span></p>
+        <p>&nbsp;</p>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+</body>
+
+</html>
