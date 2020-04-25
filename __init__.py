@@ -115,6 +115,12 @@ def signup():
 def dashboard():
     return render_template('dashboard2.html',user=current_user,queries=current_user.doubt)
 
+
+@app.route('/AboutUs')
+def AboutUs():
+    return render_template('AboutUs.html')
+
+
 @app.route('/logout')
 @login_required
 def logout():
