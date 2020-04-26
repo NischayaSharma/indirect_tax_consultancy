@@ -81,9 +81,6 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    # msg = Message('Hello', sender=app.config.get("MAIL_USERNAME"), recipients = ["nischaya1703@gmail.com"])
-    # msg.body = "This is the email body"
-    # mail.send(msg)
     return render_template('index2.html')
 
 @app.route('/login', methods=['GET','POST'])
@@ -116,9 +113,10 @@ def dashboard():
     return render_template('dashboard2.html',user=current_user,queries=current_user.doubt)
 
 
-@app.route('/AboutUs')
+@app.route('/aboutus')
 def aboutus():
-    return render_template('aboutus.html')
+    print(current_user)
+    return render_template('AboutUs.html',loggedin=current_user.is_authenticated)
 
 
 @app.route('/logout')

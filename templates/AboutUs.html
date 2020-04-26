@@ -21,7 +21,7 @@
   <ul>
     {%if loggedin==False%}
     <li><a  href="#">Home</a></li>
-    <li><a href="{{url_for('AboutUs')}}" class="active">About Us</a></li>
+    <li><a href="{{url_for('aboutus')}}" class="active">About Us</a></li>
     <li><a href="#">Services</a></li>
     <li><a href="{{ url_for('login') }}">Login</a></li>
     <!-- <li><a href="{{ url_for('signup') }}">Signup</a></li> -->
@@ -31,7 +31,7 @@
     <li><a href="{{url_for('myquestions')}}">MyQuestions</a></li>
     <li><a href="#">Services</a></li>
     <li><a href="#">Acts</a></li>
-    <li><a href="{{url_for('AboutUs')}}" class="active">About-Us</a></li>
+    <li><a href="{{url_for('aboutus')}}" class="active">About-Us</a></li>
     <li><a href="{{url_for('logout')}}">Logout</a></li>
     {%endif%}
   </ul>
