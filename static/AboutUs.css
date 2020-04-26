@@ -1,3 +1,4 @@
+
 *{
   padding: 0;
   margin: 0;
@@ -6,25 +7,18 @@
   box-sizing: border-box;
 }
 
+/* body{ */
+  /* font font-family: montserrat;
 
-
-.wrapper{
-  background-image:url('gst.jpeg');
-  background-size: 100% 100%;
-  background-repeat:no-repeat;
-  background-position:center;
-  position:absolute;
-  width:100%;
-  height:100%;
-}
-
-body{
-  font font-family: montserrat;
-  background: url(gst.jpg)  no-repeat;
+  background: url('gst.jpeg')  no-repeat;
   background-size: cover;
-  height: calc(100vh - 80px);
-}
+  height: 100vh; */
+/* } */
 
+
+section {
+  background-color: red;
+}
 nav{
   background: #0082e6;
   height: 80px;
@@ -32,13 +26,17 @@ nav{
 
 }
 
-.newsbox{
-  font font-family: montserrat;
-  background-color: #69a5d3;
-  height:35px;
-  border:2px #014b85;
-  float:top;
-}
+/* Adding Logo Here */
+
+/* .navbar-brand img{
+  height: 10%;
+} */
+
+
+
+
+
+
 
 label.logo
 {
@@ -102,7 +100,11 @@ a.active,a:hover
 
   }
 
+
+
 }
+
+
 
 @media (max-width: 858px) {
   .checkbtn
@@ -134,19 +136,57 @@ a.active,a:hover
   #check:checked ~ ul{
     left:0;
   }
+
 }
 
-p
-{
-  color: white;
+
+body{
+	margin: 0;
+	padding: 0;
+  font font-family: montserrat;
+
+  background: url('gst.jpeg')  no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+.container{
+	width:100%;
+	height:auto;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+.about{
+	width:100%;
+	height: 600px;
+	/* background-image: url(https://i.ibb.co/9bZPZgp/dsc4641-copy-880074f1fd6d9422f6c3fded126a54c8.jpg); /*Couldn't link the image so i used linear-gradient background LOL!*/ */
+	/* background-size: cover; */
+	/* background-position: center; */
+	/* background-repeat: no-repeat; */
+	/* display: flex; */
+	/* align-items: center; */
+	justify-content: center;
+	/* flex-wrap: wrap; */
+}
+.text{
+	font-size: 30px;
+	color:rgb(60, 145, 229);
+	font-family: sans-serif;
+	text-shadow: 0px 8px 8px lightblue;
 }
 
-h4{
-  color: white;
+.content{
+	width:100%;
+	height:auto;
+	background-color: rgba(0,0,0,0.8);
+	font-size: 18px;
+	font-family: audiowide;
+	color:white;
+	line-height: 30px;
+	text-align: left;
 }
-h3{
-  color: white;
-}
-.news{
-  background-color: white;
+b{
+	font-size: 50px;
+	color:white;
+	font-weight: 500px;
 }

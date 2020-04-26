@@ -117,8 +117,8 @@ def dashboard():
 
 
 @app.route('/AboutUs')
-def AboutUs():
-    return render_template('AboutUs.html')
+def aboutus():
+    return render_template('aboutus.html')
 
 
 @app.route('/logout')
