@@ -20,7 +20,7 @@
   </a>
   <ul>
     {%if loggedin==False%}
-    <li><a  href="#">Home</a></li>
+    <li><a  href="{{url_for('index')}}">Home</a></li>
     <li><a href="{{url_for('aboutus')}}" class="active">About Us</a></li>
     <li><a href="#">Services</a></li>
     <li><a href="{{ url_for('login') }}">Login</a></li>
