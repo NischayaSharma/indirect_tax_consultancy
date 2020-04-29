@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{%block title%}{%endblock%}</title>
+    <!-- {% if request.endpoint == 'login' %}
+
+    <link rel="stylesheet" href="{{url_for('.static', filename='login.css')}}">
+    {%endif%} -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    {%block link%}{%endblock%}
+    <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+
+    {%block style%}{%endblock%}
+    </style>
+  </head>
+  <body
+
+
+    <input type="checkbox" id="check">
+    <label for="check">
+
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+    <div class="sidebar">
+    <header>taxtooter</header>
+  <ul>
+    {%if request.endpoint=='login' or request.endpoint=='signup' or request.endpoint=='index' %}
+    <li><a href="#"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+    <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+    <li><a href="#"><i class="fas fa-stream"></i>Login/Signup</a></li>
+    {%endif%}
+    {%if request.endpoint=='dashboard'%}
+    <li><a href="#"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+    <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+    {%endif%}
+    <!-- <li><a href="#"><i class="fas fa-link"></i>Shortcuts</a></li>
+    <li><a href="#"><i class="fas fa-calendar-week"></i>Events</a></li>
+    <li><a href="#"><i class="far fa-envelope"></i>Contact</a></li> -->
+  </ul>
+</div>
+ <section>
+   <div class="logo">
+     <img src="{{url_for('.static', filename='logo.png')}}" alt="">
+   </div>
+   {%block layout%}
+   {%endblock%}
+ </section>
+
+
+  </body>
+</html>

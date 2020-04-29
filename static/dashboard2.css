@@ -9,6 +9,7 @@
 
 
 .wrapper{
+  /* background-image:url('gst.jpeg'); */
   background-image:url('gst.jpeg');
   background-size: 100% 100%;
   background-repeat:no-repeat;
@@ -91,6 +92,23 @@ a.active,a:hover
   display: none;
 }
 
+p{
+  color: white;
+}
+
+h4{
+  color: white;
+}
+h3{
+  color: white;
+}
+.news{
+  background-color: white;
+}
+
+
+
+
 @media (max-width: 952px) {
   label.logo{
     font-size: 30px;
@@ -101,6 +119,9 @@ a.active,a:hover
     font-size: 16px;
 
   }
+  /* .container{
+    display: none;
+  } */
 
 }
 
@@ -121,6 +142,10 @@ a.active,a:hover
 
   }
 
+  /* .container{
+    display: none;
+  } */
+
   nav ul li {
     display: block;
   }
@@ -134,19 +159,8 @@ a.active,a:hover
   #check:checked ~ ul{
     left:0;
   }
-}
 
-p
-{
-  color: white;
-}
-
-h4{
-  color: white;
-}
-h3{
-  color: white;
-}
-.news{
-  background-color: white;
+  /* #check:checked ~ .container{
+    display: none;
+  } */
 }
