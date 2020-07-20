@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+<!--<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+
+     <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}"> 
+    <link rel="stylesheet" href="{{url_for('.static', filename='login.css')}}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+
+
+    </style>
+  </head>
+  <body>
+
+
+    <input type="checkbox" id="check">
+    <label for="check">
+
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+    <div class="sidebar">
+    <header>taxtooter</header>
+  <ul>
+
+
+    <li><a href="#"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+    <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+
+     <li><a href="#"><i class="fas fa-link"></i>Shortcuts</a></li>
+    <li><a href="#"><i class="fas fa-calendar-week"></i>Events</a></li>
+    <li><a href="#"><i class="far fa-envelope"></i>Contact</a></li> 
+  </ul>
+</div>
+ <section>
+   <div class="logo">
+     <img src="logo.png" alt="">
+   </div>
+
+ --------------Layout Ends Here-------------------------- -->
+
+{% block title %} Login {% endblock %}
+
+{%block stylesheet%} 
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('.static', filename='login.css')}}">
+{%endblock%}
+
+{% block content %}
+<div class="wrapper">
+  <div class="signup">
+    <button type="button" class="signup-btn">Signup</button>
+  </div>
+
+  <form class="loginform" action="{{ url_for('login') }}" method="POST">
+    <div class="title">
+      Login form
+    </div>
+    <div class="input-form ">
+      <input type="text" class="input" name="username" placeholder="Username">
+      <i class="fas fa-user"></i>
+    </div>
+    <div class="input-form ">
+      <input type="password" class="input" name="password" placeholder="Password">
+      <i class="fas fa-key"></i>
+    </div>
+    <div class="btn">
+      <!-- <a href="#" type="submit">Login</a> -->
+      <button type="submit" name="button">login</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+<!-- 
+</section>
+</body>
+</html> -->

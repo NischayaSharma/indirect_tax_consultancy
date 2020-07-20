@@ -1,0 +1,94 @@
+{%extends "layout.html"%}
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+
+    <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+
+
+    </style>
+  </head>
+  <body>
+
+
+    <input type="checkbox" id="check">
+    <label for="check">
+
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+    <div class="sidebar">
+    <header>taxtooter</header>
+  <ul>
+
+
+    <li><a href="#"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+    <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+
+    <li><a href="#"><i class="fas fa-link"></i>Shortcuts</a></li>
+    <li><a href="#"><i class="fas fa-calendar-week"></i>Events</a></li>
+    <li><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+  </ul>
+</div>
+ <section>
+   <div class="logo">
+     <img src="logo.png" alt="">
+   </div>
+ -->
+{%block title%}Dashboard{%endblock%}
+
+{%block stylesheet%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+{%endblock%}
+
+{%block content%}
+{{super()}}
+<div class="intro">
+  <h1>Hello Nischaya!</h1>
+</div>
+<br><br>
+<div class="latest-ques">
+  <h3>Latest Questions</h3>
+</div>
+<br>
+<div class="card-body">
+  <div class="cards">
+
+    <div class="card">
+      <h2>Hello</h2>
+      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
+    </div>
+    <div class="card">
+      <h2>Hello</h2>
+      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
+    </div>
+    <div class="card">
+      <h2>Hello</h2>
+      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
+    </div>
+    <div class="card">
+      <h2>Hello</h2>
+      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
+    </div>
+  </div>
+</div>
+<div class="btn">
+  <a href="{{url_for('askquestion')}}"><button class="button" type="submit" name="button">Ask Question</button></a>
+</div>
+{%endblock%}
+
+
+<!-- </section>
+
+
+  </body>
+</html> -->

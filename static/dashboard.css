@@ -1,0 +1,219 @@
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+*{
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100% !important;
+  background: #042331;
+  transition: all .5s ease;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 20% !important;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background: #042331;
+  border-radius: 3px;
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 25px;
+  font-size: 40px;
+  color: white;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 40px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 195px;
+}
+#check:checked ~ section{
+  margin-left: 250px;
+}
+section{
+  background: url("background.png") no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+  overflow-y:auto !important;
+}
+
+section .logo img{
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 8px !important;
+
+}
+
+section .news{
+  padding-left: 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */
+
+
+
+
+/* ------------------------------DASHBOARD.CSS--------------------------------------------- */
+
+.card-body{
+  display:grid;
+  place-items:center;
+  background:cover;
+
+}
+
+.card{
+  background:rgba(0,0,0,0.9);
+  border-radius:1rem;
+  padding:8rem 2rem 8rem 2rem !important;
+  max-height: 100% !important;
+  transition:0.2s;
+  box-shadow:4px 4px 12px 4px rgba(255,173,1,0.25) !important;
+}
+
+.card:not(:first-child){
+  margin-left:-2rem !important;
+}
+
+h2{
+  color:#FFAD01;
+}
+
+.card p{
+  color:white;
+}
+
+.cards{
+
+  padding-left:25%;
+  padding-rigt:25%;
+  width:50%;
+  display:flex;
+
+
+}
+
+.card:hover{
+  transform:translateY(-1rem);
+}
+
+.card:hover ~ .card{
+  transform:translateX(2rem);
+
+}
+
+.btn {
+  position: relative;
+  width: 250px;
+  height:50px;
+
+  border: solid 1px rgba(255,173,1,1);
+  margin: 50px auto !important;
+  <!-- padding: 12px 20px; -->
+  cursor: pointer;
+  color: rgb(255, 90, 131);
+  overflow: hidden;
+  outline: none;
+  transition: 0.5s;
+}
+
+.btn:hover{
+  background-color:rgb(255,173,1);
+  font-size:bold;
+}
+
+.btn .button{
+  width:250px;
+  height:50px;
+  background-color:transparent;
+  font-size:25px;
+  font-weight:bold;
+  color:white;
+}
+
+.btn .button:hover{
+  color:black;
+}
+
+.intro{
+  text-align:center;
+  font-size:40px;
+  color:rgb(255,173,1)
+}
+
+
+.latest-ques{
+  text-align:center;
+  font-size:30px;
+  color:white;
+}

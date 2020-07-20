@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>{%block title%}{%endblock%}</title>
+  {%block stylesheet%}
+  <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  {%endblock%}
+</head>
+
+<body>
+
+  <input type="checkbox" id="check">
+  <label for="check">
+
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
+
+  <div class="sidebar">
+    <a href="{{url_for('index')}}"><header>TaxTooter</header></a>
+    <ul>
+
+
+      <li><a href="{{url_for('dashboard')}}"><i class="fas fa-qrcode"></i> Dashboard</a></li>
+      <li><a href="{{url_for('aboutus')}}"><i class="far fa-question-circle"></i> About Us</a></li>
+      <li><a href="#"><i class="fas fa-sliders-h"></i> Services</a></li>
+
+      <li><a href="#"><i class="fas fa-link"></i> Shortcuts</a></li>
+      <li><a href="#"><i class="fas fa-calendar-week"></i> Events</a></li>
+      <li><a href="#"><i class="far fa-envelope"></i> Contact</a></li>
+    </ul>
+  </div>
+  <section>
+    <div class="logo">
+      <a href="{{url_for('index')}}"><img src="{{url_for('.static', filename='logo.png')}}" alt="Logo Here"></a>
+      <br>Amidst troubles lies the Opportunity
+      <br>
+      <br>
+    </div>
+    {%block content%}
+    <rssapp-carousel id="wHqEReIWTyZGOvRu"></rssapp-carousel><script src="https://widget.rss.app/v1/carousel.js" type="text/javascript" async></script>  
+    <br>
+    <br>
+    {% endblock %}
+  </section>
+</body>
+
+</html>

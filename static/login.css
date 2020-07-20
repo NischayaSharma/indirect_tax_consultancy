@@ -1,0 +1,335 @@
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+*{
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100% !important;
+  background: #042331;
+  transition: all .5s ease;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 20% !important;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background: #042331;
+  border-radius: 3px;
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 25px;
+  font-size: 40px;
+  color: white;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 40px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 195px;
+}
+#check:checked ~ section{
+  margin-left: 250px;
+}
+section{
+  background: url("background.png") no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+}
+
+section .logo img{
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 8px !important;
+
+}
+
+section .news{
+  padding-left: 20px;
+
+}
+ */
+
+
+/* --------------------------Layout Ends Here---------------------------------------  */
+/* ------------------------------------------------------------------------------ */
+
+
+
+/* ----------------------Login.CSS----------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+.wrapper{
+  width:100%;
+
+}
+
+.signup{
+  float:right;
+  padding-right:120px !important;
+
+}
+
+.signup .signup-btn{
+  width:170px;
+  height:50px;
+  background-color:transparent;
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  border: solid 2px #FFAD01;
+  border-radius:5px;
+}
+
+.signup .signup-btn:hover{
+  background-color: #FFAD01;
+}
+
+.loginform{
+  background-color: rgba(255, 255, 0, 0);
+  position: absolute;
+  top: 55% !important;
+  left: 50% !important;
+  transform: translate(-50%,-50%) !important;
+  max-width: 380px !important;
+  height: auto !important;
+  border-radius: 5px !important;
+  padding: 40px 30px 40px 0 !important;
+  box-shadow: 0 0 50px !important;
+}
+
+.loginform .title{
+  font-size: 32px !important;
+  text-align: center !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 35px !important ;
+}
+
+.loginform .title:hover{
+  color:#FFAD01;
+
+}
+
+
+.input-form{
+  margin-bottom: 35px !important;
+  position: relative;
+}
+
+.input-form .input{
+  width: 60% !important;
+  padding: 16px !important;
+  padding-left: 80px !important;
+  font-size: 18px !important;
+  text-align: center !important;
+  color: black;
+  border: transparent;
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  background: black !important;
+  box-shadow: inset 0 0 5px !important;
+  outline: none;
+}
+
+.input-form::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px !important;
+  height: 100% !important;
+  background: #FFAD01;
+}
+
+.input-form::after{
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 70px;
+  width: 3px;
+  height: 80%;
+  background: #443e4a;
+}
+
+/* .btn{
+  width: 200px;
+  background: black;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  padding: 12px;
+  box-shadow: 0 2px 2px;
+} */
+
+.btn a{
+  color: black;
+  font-weight:bold;
+  padding-left:35% !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 24px !important;
+
+}
+.btn {
+  position: relative;
+  min-width: 200px;
+  background: none;
+  border: solid 1px #FFAD01 !important;
+  margin: 20px !important;
+  padding: 12px 20px !important;
+  cursor: pointer;
+  color: #FFAD01;
+  overflow: hidden;
+  outline: none;
+  transition: 0.5s;
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: #FFAD01;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+
+}
+
+.btn::before {
+  left: -20px;
+}
+.btn::after {
+  right: -20px;
+
+}
+
+.btn:hover {
+  color: black;
+}
+
+.btn:hover::before {
+  animation: L-b 0.7s forwards;
+}
+.btn:hover::after {
+  animation: R-b 0.7s forwards;
+
+}
+
+@keyframes L-b {
+  0% {
+    left: -20px;
+  }
+  50% {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 20px;
+    width: 20px;
+  }
+
+  100% {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200%;
+    width: 150%;
+  }
+}
+
+@keyframes R-b {
+  0% {
+    right: -20px;
+  }
+  50% {
+    right: 50%;
+    transform: translate(-50%, -50%);
+    height: 20px;
+    width: 20px;
+  }
+
+  100% {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200%;
+    width: 150%;
+  }
+}
+
+.input-form .fas{
+  position: absolute;
+  top: 18px;
+  left: 35px;
+  font-size: 20px;
+  color: white;
+}
+
+::-webkit-input-placeholder{
+  color: white;
+}
+
+::-moz-input-placeholder{
+  color: white;
+}
+
+::-ms-input-placeholder{
+  color: white;
+}

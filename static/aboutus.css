@@ -1,0 +1,242 @@
+/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+*{
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100% !important;
+  background: #042331;
+  transition: all .5s ease;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 20% !important;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background: #042331;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 25px;
+  font-size: 50px;
+  color: #FFAD01;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 40px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 195px;
+}
+#check:checked ~ section{
+  margin-left: 250px;
+}
+section{
+  background: url("background.png") no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+  overflow-y:auto !important;
+}
+
+section .logo img{
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 8px !important;
+
+}
+
+section .news{
+  padding-left: 20px;
+
+}
+ */
+
+
+/* --------------------------Layout Ends Here---------------------------------------  */
+/* ------------------------------------------------------------------------------ */
+
+
+
+/* ----------------------ABOUTUS.CSS----------------------------------- */
+/* .textRevealContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 4em;
+  text-align: center;
+  color:white;
+}
+
+.textReveal {
+  overflow: hidden;
+  animation: textRevealAnim 2s ease 0.5s forwards;
+}
+
+.textReveal > div {
+  padding: 8px 16px;
+  transform: translateX(100%);
+  border-left: 2px solid red;
+  overflow: hidden;
+  animation: textRevealAnim 2s ease 0.5s forwards,
+    borderOpacityAnim 2s ease 0.5s forwards;
+}
+
+.textReveal > div > div {
+  transform: translateX(-100%);
+  animation: textRevealAnim 2s ease 0.5s forwards;
+}
+
+@keyframes textRevealAnim {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes borderOpacityAnim {
+  50% {
+    border-left: 2px solid red;
+  }
+  100% {
+    border-left: 2px solid transparent;
+  }
+}
+
+.textReveal.x50 {
+  transform: translateX(-50%);
+}
+
+.textReveal.x100 {
+  transform: translateX(-100%);
+}
+
+.textReveal.zoom > div {
+  transform: translateX(100%) scale(0.5, 0.5);
+}
+
+.textReveal.rotateY {
+  perspective: 100px; /*adjust according to your need*/
+
+/* } */
+
+/* .textReveal.rotateY > div {
+  transform: translateX(100%) rotateY(20deg);
+}
+
+.textReveal.color > div > div {
+  background: linear-gradient(
+    to right,
+    red,
+    red 45%,
+    orange 45%,
+    orange 55%,
+    red 55%,
+    red
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-size: 300%;
+  animation: textRevealAnim 2s ease 0.5s forwards,
+    bgShiftAnim 3s ease 0.5s forwards;
+    overflow-y:auto !important;
+} */
+
+
+.aboutus h3{
+  color: #f4f4f4 !important;
+  font-weight: bold;
+  font-size:100px;
+}
+
+/* .textReveal.rotateY
+ {animation: moving 3s forwards;} */
+
+
+.textarea{
+  background-color: rgba(0,0,0,0.6);
+  text-align: justify !important;
+  text-justify: auto !important;
+  margin-left: 8% !important;
+  margin-right: 2% !important;
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+  box-shadow: 4px 4px 10px 8px black;
+}
+
+.fulljustify {
+  text-align: justify;
+}
+.fulljustify:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+/* @keyframes bgShiftAnim {
+  to {
+    background-position: 100%;
+  }
+}
+
+@keyframes moving {
+    from {transform: translateY(100px);}
+    to {transform: translateY(-300px);}
+} */
