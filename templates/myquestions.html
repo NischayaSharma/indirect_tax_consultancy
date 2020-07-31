@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+<!--  <!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8"> 
+    <title></title> -->
+{%block title%}My Questions{%endblock%} {%block stylesheet%} {{super()}}
+
+<link rel="stylesheet" href="{{url_for('.static', filename='myquestions.css')}}">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+{%endblock%}
+</head>
+
+<body>
+    <!-- <div class="wrapper">
+
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" onclick="myFunction()" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+            <a class="navbar-brand" href="#">
+                <img id="brand-image" src="{{url_for('.static', filename='Layer 2.png')}}" alt="xyz" height="75" style="padding-left: 10px;padding-top:10px;">
+            </a>
+            <ul>
+                <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+                <li><a href="{{url_for('myquestions')}}" class="active">MyQuestions</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Acts</a></li>
+                <li><a href="{{url_for('aboutus')}}">About-Us</a></li>
+                <li><a href="{{url_for('logout')}}">Logout</a></li>
+            </ul>
+        </nav>
+        <br>
+        <br> -->
+    <section>
+        <form>
+            <main>
+                {%for qry in queries%}
+                <a href="#modal" onclick="clickIt('{{loop.index}}')">{{qry.userqrynum}}: {{qry.title}}</a><br> {%endfor%}
+                <div class="modal" id="modal">
+                    <div class="modal__content">
+                        <a href="#" class="modal__close" onclick="closeIt()">&times;</a>
+                        <div id="query"></div>
+                    </div>
+                </div>
+                <br>
+            </main>
+        </form>
+    </section>
+    </div>
+
+    <script>
+        // CKEDITOR.replace("content");
+        // CKEDITOR.config.autoParagraph = false;
+
+        var replied = false
+
+        function clickIt(theClass) {
+            // var theClass = this.className;
+            doWork(event, theClass)
+        };
+
+
+        function doWork(event, className) {
+            var qry;
+            // Using fetch api to call backend endpoint
+            // console.log(className)
+            fetch('/postmethod', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(className)
+                })
+                // uncomment line under this if response is in json format
+                .then(response => response.json())
+                // .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+
+                    var heading = document.createElement("H2")
+                    heading.setAttribute('class', 'modal__heading')
+                    heading.innerText = data.title
+                    document.getElementById("query").appendChild(heading)
+
+                    var qry = document.createElement("P")
+                    qry.setAttribute('class', 'modal_paragraph')
+                    qry.innerText = "Q: " + data.query
+                    document.getElementById("query").appendChild(qry)
+
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+
+                    var qry_reply = document.createElement("P")
+                    qry_reply.setAttribute('class', 'modal_paragraph')
+                    if (data.reply == null) {
+                        qry_reply.innerText = "Not replied yet"
+                        replied = false
+                    } else {
+                        qry_reply.innerText = "A: " + data.reply
+                        replied = true
+                    }
+                    document.getElementById("query").appendChild(qry_reply)
+
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+
+                    data.subqueries.forEach(myFunc)
+
+                    if (replied) {
+                        var btn = document.createElement('div')
+                        var para = document.createElement('p')
+                        btn.setAttribute('class', 'btn_div')
+                        btn.setAttribute('id', 'hello')
+                        para.innerText = "Ask Further Question"
+                        document.getElementById("query").appendChild(btn)
+                        btn.appendChild(para)
+                        btn.onclick = function() {
+                            window.location.href = "{{url_for('askfurtherquestion')}}";
+                        }
+                    }
+
+                });
+            // event.preventDefault();
+        }
+
+        function myFunc(value, index, array) {
+            var qry = document.createElement("P")
+            qry.setAttribute('class', 'modal_paragraph')
+            qry.innerText = "Q: " + value.query
+            document.getElementById("query").appendChild(qry)
+
+            document.getElementById("query").appendChild(document.createElement("BR"))
+            document.getElementById("query").appendChild(document.createElement("BR"))
+
+            var qry_reply = document.createElement("P")
+            qry_reply.setAttribute('class', 'modal_paragraph')
+            if (value.reply == null) {
+                qry_reply.innerText = "Not replied yet"
+                replied = false
+            } else {
+                qry_reply.innerText = "A: " + value.reply
+                replied = true
+            }
+            document.getElementById("query").appendChild(qry_reply)
+
+            document.getElementById("query").appendChild(document.createElement("BR"))
+            document.getElementById("query").appendChild(document.createElement("BR"))
+        }
+
+        function closeIt() {
+            document.getElementById("query").innerHTML = ""
+        }
+    </script>
+
+
+
+</body>
+
+</body>
+
+</html>

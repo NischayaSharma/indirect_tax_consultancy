@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
 *{
   padding: 0 !important;
   margin: 0 !important;
@@ -118,7 +118,7 @@ section .news{
 
 
 
- */
+
 
 
 
@@ -179,7 +179,7 @@ h2{
 
   border: solid 1px rgba(255,173,1,1);
   margin: 50px auto !important;
-  padding: 12px 20px;
+  <!-- padding: 12px 20px; -->
   cursor: pointer;
   color: rgb(255, 90, 131);
   overflow: hidden;
@@ -208,12 +208,12 @@ h2{
 .intro{
   text-align:center;
   font-size:40px;
-  color:white
+  color:rgb(255,173,1)
 }
 
 
 .latest-ques{
   text-align:center;
   font-size:30px;
-  color:rgb(255,173,1);
+  color:white;
 }

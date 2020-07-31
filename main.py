@@ -85,6 +85,14 @@ class SubQueries(db.Model, SerializerMixin):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+@app.context_processor
+def loggedn_in_user():
+    return dict(logged_in=current_user.is_authenticated)
+
+
+@app.context_processor
+def inject_user():
+    return dict(user=current_user)
 
 @app.route('/')
 def index():
@@ -94,14 +102,15 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        global isAdmin
         user = User.query.filter_by(username=request.form['username']).first()
         if user:
             if check_password_hash(user.password, request.form['password']):
                 login_user(user)
                 if (user.isAdmin == 1):
-                    global isAdmin
                     isAdmin = True
-
+                
+                print(isAdmin)
                 return redirect(url_for('dashboard'))
             return '<h1>Invalid Pass</h1>'
         return render_template('signup.html')
@@ -116,7 +125,7 @@ def signup():
         new_user = User(username=request.form['username'], email=request.form['email'],
                         password=hashed_password, isAdmin=1 if request.form['username'] == "sharad" else 0)
         db.session.add(new_user)
-        db.commit()
+        db.session.commit()
 
         return redirect(url_for('login'))
     return render_template('signup.html')
@@ -167,9 +176,7 @@ def askquestion():
         subject = str(current_user.id)+"."+str(usrqry)+": "+str(tle)
         body = str(qry)+"\n\nBy "+str(current_user.username)+"."
         send_mail(subject, body)
-        print("Entered If")
         return redirect(url_for('dashboard'))
-    print("Didnt enter if")
     return render_template('askquestion.html')
 
 

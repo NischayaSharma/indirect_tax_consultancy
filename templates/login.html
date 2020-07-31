@@ -56,10 +56,10 @@
 {% block content %}
 <div class="wrapper">
   <div class="signup">
-    <button type="button" class="signup-btn">Signup</button>
+    <a href="{{url_for('signup')}}"><button type="button" class="signup-btn">Signup</button></a>
   </div>
 
-  <form class="loginform" action="{{ url_for('login') }}" method="POST">
+  <form class="loginform" method="POST">
     <div class="title">
       Login form
     </div>
@@ -71,9 +71,9 @@
       <input type="password" class="input" name="password" placeholder="Password">
       <i class="fas fa-key"></i>
     </div>
-    <div class="btn">
+    <div class="signup">
       <!-- <a href="#" type="submit">Login</a> -->
-      <button type="submit" name="button">login</button>
+      <button type="submit" name="button" class="signup-btn">Login</button>
     </div>
   </form>
 </div>

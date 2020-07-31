@@ -104,121 +104,197 @@ section .news{
   padding-left: 20px;
 
 }
+
  */
 
 
 /* --------------------------Layout Ends Here---------------------------------------  */
-/* ------------------------------------------------------------------------------ */
 
+
+/* ------------------------------------------------------------------------------ */
 
 
 /* ----------------------Login.CSS----------------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-.wrapper{
-  width:100%;
-
+.wrapper {
+    width: 100%;
 }
 
-.signup{
-  float:right;
-  padding-right:120px !important;
-
+.signup {
+    float: right;
+    padding-right: 120px !important;
 }
 
-.signup .signup-btn{
-  width:170px;
-  height:50px;
-  background-color:transparent;
+.signup .signup-btn {
+    width: 170px;
+    height: 50px;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: solid 2px #FFAD01;
+    border-radius: 5px;
+}
+
+.signup .signup-btn:hover {
+    background-color: #FFAD01;
+}
+
+.loginform {
+    background-color: rgba(255, 255, 0, 0);
+    position: absolute;
+    top: 55% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    max-width: 380px !important;
+    height: auto !important;
+    border-radius: 5px !important;
+    padding: 40px 30px 40px 0 !important;
+    box-shadow: 0 0 50px !important;
+}
+
+.loginform .title {
+    font-size: 32px !important;
+    text-align: center !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 35px !important;
+}
+
+.loginform .title:hover {
+    color: #FFAD01;
+}
+
+.input-form {
+    margin-bottom: 35px !important;
+    position: relative;
+}
+
+.input-form .input {
+    width: 60% !important;
+    padding: 16px !important;
+    padding-left: 80px !important;
+    font-size: 18px !important;
+    text-align: center !important;
+    border: transparent;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    background: black !important;
+    color: white !important;
+    box-shadow: inset 0 0 5px !important;
+    outline: none;
+}
+
+.input-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px !important;
+    height: 100% !important;
+    background: #FFAD01;
+}
+
+.input-form::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 70px;
+    width: 3px;
+    height: 80%;
+    background: #443e4a;
+}
+
+.btn {
+    padding-left: 20% !important;
+}
+
+.btn button {
+    width: 200px;
+    height: 50px;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: solid 2px #FFAD01;
+    border-radius: 5px;
+}
+
+.btn button:hover {
+    background-color: #FFAD01;
+}
+
+.input-form .fas {
+    position: absolute;
+    top: 18px;
+    left: 35px;
+    font-size: 20px;
+    color: white;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+
+::-moz-input-placeholder {
+    color: white;
+}
+
+::-ms-input-placeholder {
+    color: white;
+}
+
+
+/* #user-exists {
+    font-size: 25px !important;
+    text-align: center !important;
+    color: red;
+    margin-bottom: 35px !important;
+} */
+
+
+/* .btn{ */
+
+
+/* height:50px; */
+
+
+/* background-color:transparent !important;
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  border: solid 2px #FFAD01;
+  border-radius:5px; */
+
+
+/* width: 200px; */
+
+
+/* background: black !important; */
+
+
+/* background-color: transparent;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  padding: 12px;
+  box-shadow: 0 2px 2px; */
+
+
+/* } */
+
+
+/* .btn button{
+  background-color: transparent;
   color:white;
   font-size:20px;
   font-weight:bold;
   border: solid 2px #FFAD01;
   border-radius:5px;
-}
-
-.signup .signup-btn:hover{
-  background-color: #FFAD01;
-}
-
-.loginform{
-  background-color: rgba(255, 255, 0, 0);
-  position: absolute;
-  top: 55% !important;
-  left: 50% !important;
-  transform: translate(-50%,-50%) !important;
-  max-width: 380px !important;
-  height: auto !important;
-  border-radius: 5px !important;
-  padding: 40px 30px 40px 0 !important;
-  box-shadow: 0 0 50px !important;
-}
-
-.loginform .title{
-  font-size: 32px !important;
-  text-align: center !important;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 35px !important ;
-}
-
-.loginform .title:hover{
-  color:#FFAD01;
-
-}
-
-
-.loginform .input-form{
-  margin-bottom: 35px !important;
-  position: relative;
-}
-
-.loginform .input-form .input{
-  width: 60% !important;
-  padding: 16px !important;
-  padding-left: 80px !important;
-  font-size: 18px !important;
-  text-align: center !important;
-  color: white !important;
-  border: transparent;
-  border-top-right-radius: 5px !important;
-  border-bottom-right-radius: 5px !important;
-  background: black !important;
-  box-shadow: inset 0 0 5px !important;
   outline: none;
 }
-
-.loginform .input-form::before{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px !important;
-  height: 100% !important;
-  background: #FFAD01;
-}
-
-.loginform .input-form::after{
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 70px;
-  width: 3px;
-  height: 80%;
-  background: #443e4a;
-}
-
-/* .btn{
-  width: 300px;
-  background: black;
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 5px;
-  padding: 12px;
-  box-shadow: 0 2px 2px;
-}
-
 .btn a{
   color: black;
   font-weight:bold;
@@ -231,7 +307,7 @@ section .news{
 .btn {
   position: relative;
   min-width: 200px;
-  background: none;
+  background: none !important;
   border: solid 1px #FFAD01 !important;
   margin: 20px !important;
   padding: 12px 20px !important;
@@ -313,23 +389,3 @@ section .news{
     width: 150%;
   }
 } */
-
-.loginform .input-form .fas{
-  position: absolute;
-  top: 18px;
-  left: 35px;
-  font-size: 20px;
-  color: white;
-}
-
-::-webkit-input-placeholder{
-  color: white;
-}
-
-::-moz-input-placeholder{
-  color: white;
-}
-
-::-ms-input-placeholder{
-  color: white;
-}
