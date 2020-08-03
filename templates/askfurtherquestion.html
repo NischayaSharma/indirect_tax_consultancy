@@ -1,0 +1,89 @@
+{%extends "layout.html"%}
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+
+     <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}"> --
+    <link rel="stylesheet" href="{{url_for('.static', filename='askquestion.css')}}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+
+  </head>
+  <body>
+
+
+    <input type="checkbox" id="check">
+    <label for="check">
+
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+    <div class="sidebar">
+    <header>taxtooter</header>
+  <ul>
+
+
+    <li><a href="#"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+    <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+
+     <li><a href="#"><i class="fas fa-link"></i>Shortcuts</a></li>
+    <li><a href="#"><i class="fas fa-calendar-week"></i>Events</a></li>
+    <li><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+  </ul>
+</div>
+ <section>
+   <div class="logo">
+     <img src="logo.png" alt="">
+   </div> -->
+{%block title%}Ask Question{%endblock%}
+{%block stylesheet%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('.static', filename='askquestion.css')}}">
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace("content");
+  CKEDITOR.config.autoParagraph = false;
+</script>
+{%endblock%}
+
+{%block content%}
+{{super()}}
+<!-- <form action="{{ url_for('askquestion') }}" method="POST" enctype = "multipart/form-data"> -->
+<form method="POST" enctype="multipart/form-data">
+  <main>
+    <div class="title">
+      <h3>Title</h3>
+      <input type="text" name="qry_title" class="titlebox">
+    </div>
+
+    <div class="textarea">
+      <h3>Body</h3>
+      <textarea name="content" class="mytextarea" rows="8" cols="80"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlFile1">
+        <h3>Upload your file</h3>
+      </label>
+      <input type="file" name="uploaded_file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+    <br>
+    <div class="submitbutton">
+      <button type="submit" class="sign-btn">Ask a Question</button>
+      <!-- <a class="btn btn-primary" type="submit" role="button">Ask a Question</a> -->
+    </div>
+  </main>
+</form>
+{%endblock%}
+<!-- </section>
+
+>
+</body>
+
+</html> -->

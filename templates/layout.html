@@ -34,16 +34,19 @@
             {%if logged_in %}
             <li><a>Hello {{user.username}}</a></li>
             {%endif%}
+            <li><a href="{{url_for('index')}}"> Home</a></li>
+            {%if logged_in %}
             <li><a href="{{url_for('dashboard')}}"> Dashboard</a></li>
+            {%endif%}
+            {%if logged_in %}
+            <li><a href="{{url_for('myquestions')}}">My Questions</a></li>
+            {%endif%}
             <li><a href="{{url_for('aboutus')}}"> About Us</a></li>
             {% if logged_in %}
             <li><a href="{{url_for('logout')}}">Logout</a></li>
             {%else%}
             <li><a href="{{url_for('login')}}">Login</a></li>
             {%endif%}
-            <!-- <li><a href="{{url_for('aboutus')}}">My Questions</a></li> 
-      <li><a href="#">Events</a></li>
-      <li><a href="#">Contact Us</a></li> -->
         </ul>
         {%endblock%}
     </div>

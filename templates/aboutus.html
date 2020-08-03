@@ -47,57 +47,43 @@
 
 --------------------------------LAYOUT ENDS HERE----------------------- -->
 
-{%block title%} About Us {%endblock%}
-
-{%block stylesheet%}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('.static', filename='aboutus.css')}}">
-{%endblock%}
-
-
-{%block content%}
-{{super()}}
-  <div class="textarea">
+{%block title%} About Us {%endblock%} {%block stylesheet%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('.static', filename='aboutus.css')}}"> {%endblock%} {%block content%} {{super()}}
+<div class="textarea">
     <div class="textRevealContainer">
-      <div class="textReveal rotateY">
-        <div>
-          <div class="aboutus">
-            
-            <br>
-            <br>
-            <br>
-            <h3>About US</h3>
-            <div>
-            </div>
-          </div>
-          <div>
-            </div>
-            </div>
-            </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="fulljustify" align="justify">
-    <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:16pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Indirect Tax Troubleshooting</span></p>
-<p dir="ltr" style="line-height:1.425;margin-top:0pt;margin-bottom:6pt;"><span style="font-size:13.999999999999998pt;font-family:'Abril Fatface',cursive;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Organization</span></p>
-<p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:28.5pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">To Troubleshoot the queries relating to Indirect taxes in India</span></p>
-<br>
-<p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;text-align: justify; text-justify: inter-word;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">This platform is an endeavor to bring all stakeholders to seek one stop solution to their concerns relating to the field of indirect taxation in India. As we all know that India is in the transition phase leading to a new India under the flagship schemes of Make in India, One Nation One tax. This new India cannot become the one envisioned unless the field of Indirect taxation contributes significantly to the Government exchequer. It is in this context our country has recently adopted Goods and Service Tax (GST) w.e.f 01.07.2017 and various stakeholders such as small kirana stores, service providers, MSMEs, Data entry operators who are filing the returns for taxpayers, freelance consultants, advocates, large tax payers, chartered accountants, company secretaries, their subordinate staff undertaking day to day data entry/return filing/compliance related work, department officials implementing the taxation provisions, auditors, regulators etc. are slowly and steadily adapting to the new taxation system.<br><br><br>Since, this new taxation system is bring out a paradigm shift in the indirect taxation arena with not only the way its provisions are legislated, implemented and getting administered by the Department officials but also altering the way the compliance level of the indirect taxation is to be undertaken by the taxpayers through digital and online platforms with minimal physical interactions. In India, the service sectors were first time taxed through Finance Act, 1994 in the year 1994 and till 30th of June-2017, the same got evolved on day to day basis and before it could earn a self- nomenclature for itself, got abolished and merged with GST. Hence, GST being hardly 2 to 3 years old has to evolve a lot with new innovative ways the various stakeholders are encountering unique issues which are yet to be explored and resolved whether it is relating to the statutory provisions related, procedural formalities, technical glitches in the front end and back end systems etc.<br><br><br>It is in this context, providing this platform to trouble shoot the queries of the stakeholders, to their utmost satisfaction is being launched and this too based on the response would evolve accordingly. The best part of this endeavor is that it is absolutely free of cost and is just an attempt to take the concept of ease of doing business in India to new heights and bring about a paradigm shift in the compliance level of indirect taxes in India.</span></p>
-<!-- <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><br></p>
+        <div class="textReveal rotateY">
+                <div class="aboutus">
+
+                    <br>
+                    <br>
+                    <br>
+                    <h3>About US</h3>
+                </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="fulljustify">
+        <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:16pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Indirect Tax Troubleshooting</span></p>
+        <p dir="ltr" style="line-height:1.425;margin-top:0pt;margin-bottom:6pt;"><span style="font-size:13.999999999999998pt;font-family:'Abril Fatface',cursive;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Organization</span></p>
+        <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:28.5pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">To Troubleshoot the queries relating to Indirect taxes in India</span></p>
+        <br>
+        <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;text-align: justify; text-justify: inter-word;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">This platform is an endeavor to bring all stakeholders to seek one stop solution to their concerns relating to the field of indirect taxation in India. As we all know that India is in the transition phase leading to a new India under the flagship schemes of Make in India, One Nation One tax. This new India cannot become the one envisioned unless the field of Indirect taxation contributes significantly to the Government exchequer. It is in this context our country has recently adopted Goods and Service Tax (GST) w.e.f 01.07.2017 and various stakeholders such as small kirana stores, service providers, MSMEs, Data entry operators who are filing the returns for taxpayers, freelance consultants, advocates, large tax payers, chartered accountants, company secretaries, their subordinate staff undertaking day to day data entry/return filing/compliance related work, department officials implementing the taxation provisions, auditors, regulators etc. are slowly and steadily adapting to the new taxation system.<br><br><br>Since, this new taxation system is bring out a paradigm shift in the indirect taxation arena with not only the way its provisions are legislated, implemented and getting administered by the Department officials but also altering the way the compliance level of the indirect taxation is to be undertaken by the taxpayers through digital and online platforms with minimal physical interactions. In India, the service sectors were first time taxed through Finance Act, 1994 in the year 1994 and till 30th of June-2017, the same got evolved on day to day basis and before it could earn a self- nomenclature for itself, got abolished and merged with GST. Hence, GST being hardly 2 to 3 years old has to evolve a lot with new innovative ways the various stakeholders are encountering unique issues which are yet to be explored and resolved whether it is relating to the statutory provisions related, procedural formalities, technical glitches in the front end and back end systems etc.<br><br><br>It is in this context, providing this platform to trouble shoot the queries of the stakeholders, to their utmost satisfaction is being launched and this too based on the response would evolve accordingly. The best part of this endeavor is that it is absolutely free of cost and is just an attempt to take the concept of ease of doing business in India to new heights and bring about a paradigm shift in the compliance level of indirect taxes in India.</span></p>
+        <!-- <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><br></p>
 <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><br></p> -->
-<!-- <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Since, this new taxation system is bring out a paradigm shift in the indirect taxation arena with not only the way its provisions are legislated, implemented and getting administered by the Department officials but also altering the way the compliance level of the indirect taxation is to be undertaken by the taxpayers through digital and online platforms with minimal physical interactions. In India, the service sectors were first time taxed through Finance Act, 1994 in the year 1994 and till 30th of June-2017, the same got evolved on day to day basis and before it could earn a self- nomenclature for itself, got abolished and merged with GST. Hence, GST being hardly 2 to 3 years old has to evolve a lot with new innovative ways the various stakeholders are encountering unique issues which are yet to be explored and resolved whether it is relating to the statutory provisions related, procedural formalities, technical glitches in the front end and back end systems etc.</span></p> -->
-<!-- <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><br></p>
+        <!-- <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Since, this new taxation system is bring out a paradigm shift in the indirect taxation arena with not only the way its provisions are legislated, implemented and getting administered by the Department officials but also altering the way the compliance level of the indirect taxation is to be undertaken by the taxpayers through digital and online platforms with minimal physical interactions. In India, the service sectors were first time taxed through Finance Act, 1994 in the year 1994 and till 30th of June-2017, the same got evolved on day to day basis and before it could earn a self- nomenclature for itself, got abolished and merged with GST. Hence, GST being hardly 2 to 3 years old has to evolve a lot with new innovative ways the various stakeholders are encountering unique issues which are yet to be explored and resolved whether it is relating to the statutory provisions related, procedural formalities, technical glitches in the front end and back end systems etc.</span></p> -->
+        <!-- <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><br></p>
 <p dir="ltr" style="line-height:1.3550004;margin-top:0pt;margin-bottom:9pt;"><br></p> -->
-<!-- <p dir="ltr" style="line-height:1.3550004;text-align: justify;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">It is in this context, providing this platform to trouble shoot the queries of the stakeholders, to their utmost satisfaction is being launched and this too based on the response would evolve accordingly. The best part of this endeavor is that it is absolutely free of cost and is just an attempt to take the concept of ease of doing business in India to new heights and bring about a paradigm shift in the compliance level of indirect taxes in India.</span></p> -->
-<p dir="ltr" style="line-height:1.3550004;text-align: justify;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Amidst troubles lies the Opportunity-</span></p>
-<p dir="ltr" style="line-height:1.365;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:13.999999999999998pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Indirect Tax Troubleshooting-ITT</span></p>
-            </div>
-<br>
-<br>
-<br>
-<br>
-  </div>
+        <!-- <p dir="ltr" style="line-height:1.3550004;text-align: justify;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">It is in this context, providing this platform to trouble shoot the queries of the stakeholders, to their utmost satisfaction is being launched and this too based on the response would evolve accordingly. The best part of this endeavor is that it is absolutely free of cost and is just an attempt to take the concept of ease of doing business in India to new heights and bring about a paradigm shift in the compliance level of indirect taxes in India.</span></p> -->
+        <p dir="ltr" style="line-height:1.3550004;text-align: justify;margin-top:0pt;margin-bottom:9pt;"><span style="font-size:15pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Amidst troubles lies the Opportunity-</span></p>
+        <p dir="ltr" style="line-height:1.365;margin-top:0pt;margin-bottom:0pt;"><span style="font-size:13.999999999999998pt;font-family:Teko,sans-serif;color:#ffad01;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Indirect Tax Troubleshooting-ITT</span></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
 {%endblock%}
 <!-- 
 
