@@ -134,7 +134,7 @@ def signup():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html',queries=current_user.doubt)
     # ,user=current_user,queries=current_user.doubt
 
 
