@@ -134,9 +134,10 @@ def signup():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html',queries=current_user.doubt)
-    # ,user=current_user,queries=current_user.doubt
-
+    if current_user.isAdmin == 1:
+        return render_template('admin_dashboard.html')
+    else:
+        return render_template('dashboard.html',queries=current_user.doubt)
 
 @app.route('/aboutus')
 def aboutus():
@@ -180,10 +181,22 @@ def askquestion():
     return render_template('askquestion.html')
 
 
-@app.route('/myquestions')
+@app.route('/myquestions', methods=['GET','POST'])
 @login_required
 def myquestions():
-    return render_template('myquestions.html', queries=current_user.doubt)
+    if current_user.isAdmin==1:
+        queries=[]
+        users = User.query.all()
+        for user in users:
+            print(user.doubt)
+            for dbt in user.doubt:
+                queries.append(dbt)
+        print(queries)
+        return render_template('adminquestions.html', queries=queries)
+    else:
+        print(current_user.doubt)
+        return render_template('myquestions.html', queries=current_user.doubt)
+        
 
 
 @app.route('/postmethod', methods=['POST'])
@@ -197,6 +210,23 @@ def get_javascript_data():
     except ValueError:
         return jsonify('OK')
 
+@app.route('/admindata', methods=['POST'])
+def admin_js():
+    try:
+        global jsdata
+        jsdata = request.get_json()
+        queries=[]
+        users = User.query.all()
+        for user in users:
+            print(user.doubt)
+            for dbt in user.doubt:
+                queries.append(dbt)
+        print(queries)
+        jsonStr = queries[int(jsdata)-1].to_dict()
+        print(jsonStr)
+        return jsonify(jsonStr)
+    except ValueError:
+        return jsonify('OK')
 
 @app.route('/askfurtherquestion', methods=['GET', 'POST'])
 @login_required

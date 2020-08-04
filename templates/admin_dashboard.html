@@ -62,28 +62,22 @@
 <br>
 <div class="card-body">
   <div class="cards">
-
+    {%for qry in queries%}
+    {%if loop.index <=5%}
     <div class="card">
-      <h2>Hello</h2>
-      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
+      <h2>{{qry.title}}</h2>
+      <br>
+      <p>{{qry.query}}</p>
     </div>
-    <div class="card">
-      <h2>Hello</h2>
-      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
-    </div>
-    <div class="card">
-      <h2>Hello</h2>
-      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
-    </div>
-    <div class="card">
-      <h2>Hello</h2>
-      <p>Hey hello my name is siddharth mehta and i have some bullshit doubt in some more bull shit topic </p>
-    </div>
+    {%endif%} {%endfor%}
   </div>
 </div>
-<div class="btn">
-  <!-- <a href="#" type="submit">Login</a> -->
+<!-- <div class="btn">
+  <a href="#" type="submit">Login</a> 
   <button class="button" type="submit" name="button">Ask Question</button>
+</div> -->
+<div class="btn">
+  <a href="{{url_for('myquestions')}}"><button class="button" type="submit" name="button">My Questions</button></a>
 </div>
 {%endblock%}
 

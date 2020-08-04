@@ -1,0 +1,188 @@
+{% extends "layout.html" %}
+
+<!--  <!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8"> 
+    <title></title> -->
+{%block title%}Admin Questions{%endblock%}
+{%block stylesheet%}
+{{super()}}
+
+<link rel="stylesheet" href="{{url_for('.static', filename='myquestions.css')}}">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+{%endblock%}
+</head>
+
+{%block content%}
+
+<body>
+    <section>
+        <div class="textarea">
+            <br>
+            <br>
+            <br>
+            <h3>Admin Questions</h3>
+            <br>
+            <br>
+            {%for qry in queries%}
+            <br>
+            <a href="#modal" onclick="clickIt('{{loop.index}}')">{{qry.id}}: {{qry.title}}</a><br>
+            {%endfor%}
+            <div class="fulljustify">
+                <div class="modal" id="modal">
+                    <div class="modal__content">
+                        <a href="#" class="modal__close" onclick="closeIt()">&times;</a>
+                        <div id="query"></div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </section>
+    </div>
+
+    <script>
+        // CKEDITOR.replace("content");
+        // CKEDITOR.config.autoParagraph = false;
+
+        var replied = false
+
+        function clickIt(theClass) {
+            // var theClass = this.className;
+            doWork(event, theClass)
+        };
+
+
+        function doWork(event, className) {
+            var qry;
+            // Using fetch api to call backend endpoint
+            // console.log(className)
+            fetch('/admindata', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(className)
+            })
+                // uncomment line under this if response is in json format
+                .then(response => response.json())
+                // .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+
+                    var heading = document.createElement("H2")
+                    heading.setAttribute('class', 'modal__heading')
+                    heading.innerText = data.title
+                    document.getElementById("query").appendChild(heading)
+
+                    var qry = document.createElement("P")
+                    qry.setAttribute('class', 'modal_paragraph')
+                    qry.innerText = "Q: " + data.query
+                    document.getElementById("query").appendChild(qry)
+
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+
+                    var qry_reply = document.createElement("P")
+                    qry_reply.setAttribute('class', 'modal_paragraph')
+                    if (data.reply == null) {
+                        var reply_form = replyBox()
+                        qry_reply.appendChild(reply_form)
+                        replied = false
+                    } else {
+                        qry_reply.innerText = "A: " + data.reply
+                        replied = true
+                    }
+                    document.getElementById("query").appendChild(qry_reply)
+
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+                    document.getElementById("query").appendChild(document.createElement("BR"))
+
+                    data.subqueries.forEach(myFunc)
+                });
+            // event.preventDefault();
+        }
+
+        function myFunc(value, index, array) {
+            var qry = document.createElement("P")
+            qry.setAttribute('class', 'modal_paragraph')
+            qry.innerText = "Q: " + value.query
+            document.getElementById("query").appendChild(qry)
+
+            document.getElementById("query").appendChild(document.createElement("BR"))
+
+            var qry_reply = document.createElement("P")
+            qry_reply.setAttribute('class', 'modal_paragraph')
+            if (value.reply == null) {
+                var reply_form = replyBox()
+                qry_reply.appendChild(reply_form)
+                replied = false
+            } else {
+                qry_reply.innerText = "A: " + value.reply
+                replied = true
+            }
+            document.getElementById("query").appendChild(qry_reply)
+
+            document.getElementById("query").appendChild(document.createElement("BR"))
+        }
+
+        function closeIt() {
+            document.getElementById("query").innerHTML = ""
+        }
+
+        function replyBox() {
+
+            var reply_form = document.createElement("form")
+            reply_form.setAttribute('method', 'POST')
+
+                var replyHeading = document.createElement("h2")
+                replyHeading.innerText = "Reply"
+            
+                var input = document.createElement("textarea")
+                input.setAttribute('rows', '10')
+                input.setAttribute('columns', '100')
+                input.setAttribute('name', 'qry_reply')
+                input.setAttribute('class', 'mytextarea')
+
+                var uploadHeading = document.createElement("h2")
+                uploadHeading.innerText = "Upload File"
+
+                var upload_file = document.createElement("input")
+                upload_file.setAttribute('type','file')
+                upload_file.setAttribute('name','uploaded_file')
+                upload_file.setAttribute('class','form-control-file')
+                
+                var div = document.createElement("div")
+                div.setAttribute('class', 'btn')
+
+                    var btn = document.createElement('button')
+                    btn.setAttribute('type','submit')
+                    btn.setAttribute('class','aign-btn')
+                    btn.innerText = "Reply"
+                
+                div.appendChild(btn)
+
+            reply_form.appendChild(replyHeading)
+            reply_form.appendChild(document.createElement("BR"))
+            reply_form.appendChild(input)
+            reply_form.appendChild(document.createElement("BR"))
+            reply_form.appendChild(document.createElement("BR"))
+            reply_form.appendChild(uploadHeading)
+            reply_form.appendChild(document.createElement("BR"))
+            reply_form.appendChild(upload_file)
+            reply_form.appendChild(document.createElement("BR"))
+            reply_form.appendChild(document.createElement("BR"))
+            reply_form.appendChild(div)
+
+            return reply_form
+        }
+    </script>
+    {%endblock%}
+
+
+    <!--
+</body>
+</html> -->
