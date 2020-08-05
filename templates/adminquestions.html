@@ -34,7 +34,7 @@
             <div class="fulljustify">
                 <div class="modal" id="modal">
                     <div class="modal__content">
-                        <a href="#" class="modal__close" onclick="closeIt()">&times;</a>
+                        <a href="" class="modal__close" onclick="closeIt()">&times;</a>
                         <div id="query"></div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
 
                     var qry_reply = document.createElement("P")
                     qry_reply.setAttribute('class', 'modal_paragraph')
-                    if (data.reply == null) {
+                    if (data.reply == null || data.reply == "") {
                         var reply_form = replyBox()
                         qry_reply.appendChild(reply_form)
                         replied = false
@@ -116,7 +116,7 @@
 
             var qry_reply = document.createElement("P")
             qry_reply.setAttribute('class', 'modal_paragraph')
-            if (value.reply == null) {
+            if (value.reply == null || value.reply == "") {
                 var reply_form = replyBox()
                 qry_reply.appendChild(reply_form)
                 replied = false
@@ -138,42 +138,42 @@
             var reply_form = document.createElement("form")
             reply_form.setAttribute('method', 'POST')
 
-                var replyHeading = document.createElement("h2")
-                replyHeading.innerText = "Reply"
-            
-                var input = document.createElement("textarea")
-                input.setAttribute('rows', '10')
-                input.setAttribute('columns', '100')
-                input.setAttribute('name', 'qry_reply')
-                input.setAttribute('class', 'mytextarea')
+            var replyHeading = document.createElement("h2")
+            replyHeading.innerText = "Reply"
 
-                var uploadHeading = document.createElement("h2")
-                uploadHeading.innerText = "Upload File"
+            var input = document.createElement("textarea")
+            input.setAttribute('rows', '10')
+            input.setAttribute('columns', '100')
+            input.setAttribute('name', 'qry_reply')
+            input.setAttribute('class', 'mytextarea')
 
-                var upload_file = document.createElement("input")
-                upload_file.setAttribute('type','file')
-                upload_file.setAttribute('name','uploaded_file')
-                upload_file.setAttribute('class','form-control-file')
-                
-                var div = document.createElement("div")
-                div.setAttribute('class', 'btn')
+            var uploadHeading = document.createElement("h2")
+            uploadHeading.innerText = "Upload File"
 
-                    var btn = document.createElement('button')
-                    btn.setAttribute('type','submit')
-                    btn.setAttribute('class','aign-btn')
-                    btn.innerText = "Reply"
-                
-                div.appendChild(btn)
+            var upload_file = document.createElement("input")
+            upload_file.setAttribute('type', 'file')
+            upload_file.setAttribute('name', 'uploaded_file')
+            upload_file.setAttribute('class', 'form-control-file')
+
+            var div = document.createElement("div")
+            div.setAttribute('class', 'btn')
+
+            var btn = document.createElement('button')
+            btn.setAttribute('type', 'submit')
+            btn.setAttribute('class', 'sign-btn')
+            btn.innerText = "Reply"
+
+            div.appendChild(btn)
 
             reply_form.appendChild(replyHeading)
             reply_form.appendChild(document.createElement("BR"))
             reply_form.appendChild(input)
             reply_form.appendChild(document.createElement("BR"))
-            reply_form.appendChild(document.createElement("BR"))
-            reply_form.appendChild(uploadHeading)
-            reply_form.appendChild(document.createElement("BR"))
-            reply_form.appendChild(upload_file)
-            reply_form.appendChild(document.createElement("BR"))
+            // reply_form.appendChild(document.createElement("BR"))
+            // reply_form.appendChild(uploadHeading)
+            // reply_form.appendChild(document.createElement("BR"))
+            // reply_form.appendChild(upload_file)
+            // reply_form.appendChild(document.createElement("BR"))
             reply_form.appendChild(document.createElement("BR"))
             reply_form.appendChild(div)
 
